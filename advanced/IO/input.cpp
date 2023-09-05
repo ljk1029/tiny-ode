@@ -27,7 +27,7 @@ int io_cin()
     cout << "请输入一个整数:";
     cin >> number;
     cout << "请输入一个字符串:";
-    cin.ignore();
+    cin.ignore(); //忽略回车
     getline(cin, name);
 
     cout << "你输入的整数是: " << number << endl;
