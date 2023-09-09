@@ -1,6 +1,6 @@
 ##!/bin/bash
 
-exe_name=my_stl
+exe_name=my_type
 out_path=../../build
 CC=g++
 
@@ -8,7 +8,7 @@ CC=g++
 function build_part() {
     echo "build $exe_name"
     rm $out_path/$exe_name.o 
-    $CC  demo.cpp vector.cpp map.cpp list.cpp set.cpp -I . -g -o $exe_name.o 
+    $CC  demo.cpp memory.cpp template.cpp -I . -g -o $exe_name.o 
     if [ ! -d "$out_path" ]; then
         mkdir $out_path
     fi
@@ -18,14 +18,14 @@ function build_part() {
 # 构建
 function build_demo()
 {
-    exe_name=my_stl
+    exe_name=my_type
     build_part
 }
 
 # 运行
 function run_demo() 
 {
-    exe_name=my_stl
+    exe_name=my_type
     echo "run $exe_name"
     $out_path/$exe_name.o  
 }

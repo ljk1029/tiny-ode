@@ -8,7 +8,7 @@ CC=g++
 function build_part() {
     echo "build $exe_name"
     rm $out_path/$exe_name.o 
-    $CC  demo.cpp input.cpp  -I . -g -o $exe_name.o 
+    $CC  demo.cpp input.cpp string.cpp -I . -g -o $exe_name.o 
     if [ ! -d "$out_path" ]; then
         mkdir $out_path
     fi

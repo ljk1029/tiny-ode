@@ -1,8 +1,8 @@
 # 默认使用C++编译器
 CXX := g++
 CXXFLAGS := -Wall -Wextra -g
-SRC_DIR := ./
-BUILD_DIR := ../../build
+SRC_DIR := .IO
+BUILD_DIR := ../build
 
 # 宏定义，用于选择编程语言
 # 默认情况下使用C++，可以通过在命令行中设置 C_MODE=1 来切换到C语言编译
