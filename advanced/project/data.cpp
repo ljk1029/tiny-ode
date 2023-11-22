@@ -11,30 +11,27 @@
 #include <mutex>
 #include <utility>
 
-
 /* 命令空间*/
 namespace ltest{
-
-// 一、双向链表存储
 // 锁
 std::mutex mtx;
 using KEY_TYPE = long;
 
 template<typename T>
-struct _list
+struct Node
 {
-    struct _list* prev;  // 向前指针
-    struct _list* next;  // 向后指针
+    struct Node* prev;  // 向前指针
+    struct Node* next;  // 向后指针
     KEY_TYPE key;   // 键值
     T data;         // 数值
 };
 
 template<typename T>
-class clist{
+class CustomLinkedList{
 public:
-    explicit clist(int max_size = 512, bool log = false):list_head{nullptr},list_tail{nullptr},
+    explicit CustomLinkedList(int max_size = 512, bool log = false):list_head{nullptr},list_tail{nullptr},
         list_cur_size{0} { list_max_size = max_size; log_switch = log; }
-    ~clist(){ Clear(); }
+    ~CustomLinkedList(){ Clear(); }
 
     int GetSize();
     int Clear();
@@ -47,7 +44,7 @@ public:
     void print(std::string title = "");
     
 private:
-    _list<T>* Find(KEY_TYPE key); // 类内部使用，未加锁
+    Node<T>* Find(KEY_TYPE key); // 类内部使用，未加锁
     template<typename... Args>
     void PrintInfo(const Args&... args) {
         if(log_switch){
@@ -58,25 +55,25 @@ private:
     }
 
     bool log_switch;  // log 打印开关
-    _list<T>* list_head;
-    _list<T>* list_tail;
+    Node<T>* list_head;
+    Node<T>* list_tail;
     int list_max_size;
     int list_cur_size;
 };
 
 // get list current size
 template<typename T>
-int clist<T>::GetSize(){
+int CustomLinkedList<T>::GetSize(){
     return list_cur_size;
 }
 
 // clear all elements
 template<typename T>
-int clist<T>::Clear(){
+int CustomLinkedList<T>::Clear(){
     std::unique_lock<std::mutex> lock(mtx);
     while(list_head)
     {
-        _list<T>* temp = list_head;
+        Node<T>* temp = list_head;
         list_head  = list_head->next;
         delete temp;
     }
@@ -87,7 +84,7 @@ int clist<T>::Clear(){
 
 // add element to list
 template<typename T>
-int clist<T>::Add(KEY_TYPE key, T data){
+int CustomLinkedList<T>::Add(KEY_TYPE key, T data){
     int ret = false;
     std::unique_lock<std::mutex> lock(mtx);
     if(list_cur_size >= list_max_size){
@@ -97,7 +94,7 @@ int clist<T>::Add(KEY_TYPE key, T data){
 
     if(Find(key) == nullptr)
     {
-        _list<T>* temp = new _list<T>;
+        Node<T>* temp = new Node<T>;
         temp->next = nullptr;
         temp->prev = nullptr;
         temp->key  = key;
@@ -123,10 +120,10 @@ int clist<T>::Add(KEY_TYPE key, T data){
 
 // delete element from list
 template<typename T>
-int clist<T>::Delete(KEY_TYPE key){
+int CustomLinkedList<T>::Delete(KEY_TYPE key){
     int ret = false;
     std::unique_lock<std::mutex> lock(mtx);
-    _list<T>* temp = Find(key) ;
+    Node<T>* temp = Find(key) ;
     if(temp != nullptr)
     {
         if(temp->prev == nullptr)
@@ -161,8 +158,8 @@ int clist<T>::Delete(KEY_TYPE key){
 
 // find element in list
 template<typename T>
-_list<T>* clist<T>::Find(KEY_TYPE key){
-    _list<T>* ret = nullptr, *next = list_head;
+Node<T>* CustomLinkedList<T>::Find(KEY_TYPE key){
+    Node<T>* ret = nullptr, *next = list_head;
     while(next)
     {
         if(next->key == key)
@@ -174,9 +171,9 @@ _list<T>* clist<T>::Find(KEY_TYPE key){
 
 // find element in list and get its data
 template<typename T>
-int clist<T>::Find(KEY_TYPE key, T& data){
+int CustomLinkedList<T>::Find(KEY_TYPE key, T& data){
     std::unique_lock<std::mutex> lock(mtx);
-    _list<T>* ret = Find(key);
+    Node<T>* ret = Find(key);
     if(ret)
     {   
         data = ret->data;
@@ -190,19 +187,16 @@ int clist<T>::Find(KEY_TYPE key, T& data){
 }
 
 template<typename T>
-void clist<T>::print(std::string title)
+void CustomLinkedList<T>::print(std::string title)
 {
     std::cout << title << ":limit_size:" << list_max_size << "," << "size:" << list_cur_size <<std::endl;
-    _list<T>* next = list_head;
+    Node<T>* next = list_head;
     while(next)
     {
         std::cout << "element:" << next->key << "," << next->data <<std::endl;
         next = next->next;
     }
 }
-
-// 二、树存储
-
 
 }
 
@@ -217,8 +211,8 @@ using namespace ltest;
 
 
 // 1、接口测试
-TEST(CListTest, EmptyList) {
-    clist<int> list;
+TEST(CustomLinkedListTest, EmptyList) {
+    CustomLinkedList<int> list;
     EXPECT_EQ(list.GetSize(), 0);
 
     list.Clear();
@@ -226,8 +220,8 @@ TEST(CListTest, EmptyList) {
 }
 
 // 2、添加删除测试
-TEST(CListTest, AddAndDelete) {
-    clist<int> list;
+TEST(CustomLinkedListTest, AddAndDelete) {
+    CustomLinkedList<int> list;
     int data = 42;
     int key = 1;
 
@@ -243,8 +237,8 @@ TEST(CListTest, AddAndDelete) {
 }
 
 // 3、添加、查找测试
-TEST(CListTest, Find) {
-    clist<std::string> list;
+TEST(CustomLinkedListTest, Find) {
+    CustomLinkedList<std::string> list;
     std::string data1 = "42";
     std::string data2 = "100";
     int key1 = 1;
@@ -264,8 +258,8 @@ TEST(CListTest, Find) {
 }
 
 //多线程测试
-TEST(CListTest, MultipleThreads) {
-    clist<std::string> list;
+TEST(CustomLinkedListTest, MultipleThreads) {
+    CustomLinkedList<std::string> list;
     const int num_threads = 10;
     const int num_adds = 100;
 
@@ -311,9 +305,9 @@ TEST(CListTest, MultipleThreads) {
 }
 
 // 内容测试
-TEST(CListTest, content) 
+TEST(CustomLinkedListTest, content) 
 {
-    clist<std::string> list(10, true);
+    CustomLinkedList<std::string> list(10, true);
     const int num_adds = 12;
     for (int i = 0; i < num_adds; i++) {
         std::string data = "String_" + std::to_string(i);
