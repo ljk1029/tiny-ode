@@ -1,0 +1,1 @@
+g++ test.cpp gtest-all.cc -I ../ -lpthread

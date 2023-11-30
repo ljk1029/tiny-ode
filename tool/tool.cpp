@@ -1,10 +1,27 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <functional>
 
 #include "datatool.h"
+#include "log.h"
 
 
+using CallbackFunc = std::function<void()>;
+
+// 测试回调
+void test_func(const std::string& title, CallbackFunc callback)
+{
+    std::cout << "------" << "[" \
+        << title << ":test]" 
+        << "------" << std::endl;
+    callback();
+    std::cout << "--------------end--------------\n\n";
+}
+
+
+
+// 树测试
 void tree_test1()
 {
     data_tool::AVLTree<int> avlTree;
@@ -44,7 +61,7 @@ void tree_test2()
     avlTree.inorderTraversal(avlTree.root);
     std::cout << std::endl;
 
-       // 删除节点
+    // 删除节点
     //avlTree.root = avlTree.deleteNode(avlTree.root, "apple");
     avlTree.root = avlTree.deleteNode(avlTree.root, "fig");
     // 中序遍历
@@ -52,15 +69,15 @@ void tree_test2()
     std::cout << std::endl;
 }
 
+
+// 链表测试
 void list_test1()
 {
     data_tool::CustomLinkedList<int> list;
     list.print("test1");
-
     list.Clear();
     list.print("test1");
 }
-
 
 void list_test2()
 {
@@ -79,7 +96,6 @@ void list_test2()
     list.Delete(key); // Deleting a non-existent key should fail
     list.print("test2, Del");
 }
-
 
 void list_test3()
 {
@@ -106,10 +122,9 @@ void list_test3()
 void list_test4()
 {
     data_tool::CustomLinkedList<std::string> list;
+    std::vector<std::thread> threads;
     const int num_threads = 10;
     const int num_adds = 100;
-
-    std::vector<std::thread> threads;
 
     // 启动多个线程进行添加操作
     for (int i = 0; i < num_threads; i++) {
@@ -157,20 +172,16 @@ void list_test5()
         std::string data = "String_" + std::to_string(i);
         list.Add(i, data);
     }
-
     list.print();
-
 
     list.Clear();
     list.print("clear");
-
 
     for (int i = 0; i < num_adds; i++) {
         std::string data = "String_" + std::to_string(i);
         list.Add(i, data);
     }
     list.print("add");
-
     std::cout << list.GetSize() <<std::endl;
 
     for (int i = 0; i < num_adds; i++) {
@@ -180,19 +191,33 @@ void list_test5()
         std::string data = "String_" + std::to_string(i);
         list.Add(i+8, data);
     }
-
     list.print("change");
 }
 
-int main() {
-    tree_test1();
-    tree_test2();
+// 日志测试
+void log_test()
+{
+    log_tool::log_test();
+    log_tool::log(1, "log:", 45);
+}
 
-    list_test1();
-    list_test2();
-    list_test3();
-    list_test4();
-    list_test5();
-    
+
+// 
+int main(int argc, char *argv[]) 
+{
+    // 树
+    test_func("tree_test1", tree_test1);
+    test_func("tree_test2", tree_test2);
+
+    // 表
+    test_func("list_test1", list_test1);
+    test_func("list_test2", list_test2);
+    test_func("list_test3", list_test3);
+    test_func("list_test4", list_test4);
+    test_func("list_test5", list_test5);
+
+    // log
+    test_func("log_test", log_test);
+   
     return 0;
 }
