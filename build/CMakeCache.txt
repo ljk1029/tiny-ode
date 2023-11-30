@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=mytool
+CMAKE_PROJECT_NAME:STATIC=mystdapp
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -210,16 +210,10 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Value Computed by CMake
-mygtest_BINARY_DIR:STATIC=/home/lixiang/ljk_doc/Qt/build/gtest
+mystdapp_BINARY_DIR:STATIC=/home/lixiang/ljk_doc/Qt/build
 
 //Value Computed by CMake
-mygtest_SOURCE_DIR:STATIC=/home/lixiang/ljk_doc/Qt/tool/gtest
-
-//Value Computed by CMake
-mytool_BINARY_DIR:STATIC=/home/lixiang/ljk_doc/Qt/build
-
-//Value Computed by CMake
-mytool_SOURCE_DIR:STATIC=/home/lixiang/ljk_doc/Qt/tool
+mystdapp_SOURCE_DIR:STATIC=/home/lixiang/ljk_doc/Qt/advanced/stdlib
 
 
 ########################
@@ -306,7 +300,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/home/lixiang/ljk_doc/Qt/tool
+CMAKE_HOME_DIRECTORY:INTERNAL=/home/lixiang/ljk_doc/Qt/advanced/stdlib
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=1
 //ADVANCED property for variable: CMAKE_LINKER
@@ -326,7 +320,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

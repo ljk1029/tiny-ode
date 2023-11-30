@@ -1,1 +1,0 @@
-/usr/bin/c++   -g   CMakeFiles/mygtool.dir/gtool.cpp.o CMakeFiles/mygtool.dir/gtest/gtest-all.cc.o  -o /home/lixiang/ljk_doc/Qt/tool/bin/mygtool  -lpthread 

@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lixiang/ljk_doc/Qt/tool
+CMAKE_SOURCE_DIR = /home/lixiang/ljk_doc/Qt/advanced/stdlib
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/lixiang/ljk_doc/Qt/build
@@ -111,124 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named mygtool
+# Target rules for targets named mystdapp
 
 # Build rule for target.
-mygtool: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mygtool
-.PHONY : mygtool
+mystdapp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 mystdapp
+.PHONY : mystdapp
 
 # fast build rule for target.
-mygtool/fast:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/build
-.PHONY : mygtool/fast
+mystdapp/fast:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/build
+.PHONY : mystdapp/fast
 
-#=============================================================================
-# Target rules for targets named mytool
+mytest.o: mytest.cpp.o
 
-# Build rule for target.
-mytool: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mytool
-.PHONY : mytool
-
-# fast build rule for target.
-mytool/fast:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/build
-.PHONY : mytool/fast
-
-#=============================================================================
-# Target rules for targets named mygtest
-
-# Build rule for target.
-mygtest: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 mygtest
-.PHONY : mygtest
-
-# fast build rule for target.
-mygtest/fast:
-	$(MAKE) -f gtest/CMakeFiles/mygtest.dir/build.make gtest/CMakeFiles/mygtest.dir/build
-.PHONY : mygtest/fast
-
-gtest/gtest-all.o: gtest/gtest-all.cc.o
-
-.PHONY : gtest/gtest-all.o
+.PHONY : mytest.o
 
 # target to build an object file
-gtest/gtest-all.cc.o:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtest/gtest-all.cc.o
-.PHONY : gtest/gtest-all.cc.o
+mytest.cpp.o:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/mytest.cpp.o
+.PHONY : mytest.cpp.o
 
-gtest/gtest-all.i: gtest/gtest-all.cc.i
+mytest.i: mytest.cpp.i
 
-.PHONY : gtest/gtest-all.i
-
-# target to preprocess a source file
-gtest/gtest-all.cc.i:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtest/gtest-all.cc.i
-.PHONY : gtest/gtest-all.cc.i
-
-gtest/gtest-all.s: gtest/gtest-all.cc.s
-
-.PHONY : gtest/gtest-all.s
-
-# target to generate assembly for a file
-gtest/gtest-all.cc.s:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtest/gtest-all.cc.s
-.PHONY : gtest/gtest-all.cc.s
-
-gtool.o: gtool.cpp.o
-
-.PHONY : gtool.o
-
-# target to build an object file
-gtool.cpp.o:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtool.cpp.o
-.PHONY : gtool.cpp.o
-
-gtool.i: gtool.cpp.i
-
-.PHONY : gtool.i
+.PHONY : mytest.i
 
 # target to preprocess a source file
-gtool.cpp.i:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtool.cpp.i
-.PHONY : gtool.cpp.i
+mytest.cpp.i:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/mytest.cpp.i
+.PHONY : mytest.cpp.i
 
-gtool.s: gtool.cpp.s
+mytest.s: mytest.cpp.s
 
-.PHONY : gtool.s
-
-# target to generate assembly for a file
-gtool.cpp.s:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/gtool.cpp.s
-.PHONY : gtool.cpp.s
-
-tool.o: tool.cpp.o
-
-.PHONY : tool.o
-
-# target to build an object file
-tool.cpp.o:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/tool.cpp.o
-.PHONY : tool.cpp.o
-
-tool.i: tool.cpp.i
-
-.PHONY : tool.i
-
-# target to preprocess a source file
-tool.cpp.i:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/tool.cpp.i
-.PHONY : tool.cpp.i
-
-tool.s: tool.cpp.s
-
-.PHONY : tool.s
+.PHONY : mytest.s
 
 # target to generate assembly for a file
-tool.cpp.s:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/tool.cpp.s
-.PHONY : tool.cpp.s
+mytest.cpp.s:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/mytest.cpp.s
+.PHONY : mytest.cpp.s
 
 # Help Target
 help:
@@ -238,18 +158,10 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... mygtool"
-	@echo "... mytool"
-	@echo "... mygtest"
-	@echo "... gtest/gtest-all.o"
-	@echo "... gtest/gtest-all.i"
-	@echo "... gtest/gtest-all.s"
-	@echo "... gtool.o"
-	@echo "... gtool.i"
-	@echo "... gtool.s"
-	@echo "... tool.o"
-	@echo "... tool.i"
-	@echo "... tool.s"
+	@echo "... mystdapp"
+	@echo "... mytest.o"
+	@echo "... mytest.i"
+	@echo "... mytest.s"
 .PHONY : help
 
 

@@ -44,7 +44,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/lixiang/ljk_doc/Qt/tool
+CMAKE_SOURCE_DIR = /home/lixiang/ljk_doc/Qt/advanced/stdlib
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/lixiang/ljk_doc/Qt/build
@@ -53,122 +53,46 @@ CMAKE_BINARY_DIR = /home/lixiang/ljk_doc/Qt/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/mygtool.dir/all
-all: CMakeFiles/mytool.dir/all
-all: gtest/all
+all: CMakeFiles/mystdapp.dir/all
 
 .PHONY : all
 
 # The main recursive "preinstall" target.
-preinstall: gtest/preinstall
+preinstall:
 
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/mygtool.dir/clean
-clean: CMakeFiles/mytool.dir/clean
-clean: gtest/clean
+clean: CMakeFiles/mystdapp.dir/clean
 
 .PHONY : clean
 
 #=============================================================================
-# Directory level rules for directory gtest
-
-# Recursive "all" directory target.
-gtest/all: gtest/CMakeFiles/mygtest.dir/all
-
-.PHONY : gtest/all
-
-# Recursive "preinstall" directory target.
-gtest/preinstall:
-
-.PHONY : gtest/preinstall
-
-# Recursive "clean" directory target.
-gtest/clean: gtest/CMakeFiles/mygtest.dir/clean
-
-.PHONY : gtest/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/mygtool.dir
+# Target rules for target CMakeFiles/mystdapp.dir
 
 # All Build rule for target.
-CMakeFiles/mygtool.dir/all:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/depend
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lixiang/ljk_doc/Qt/build/CMakeFiles --progress-num=4,5,6 "Built target mygtool"
-.PHONY : CMakeFiles/mygtool.dir/all
+CMakeFiles/mystdapp.dir/all:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/depend
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lixiang/ljk_doc/Qt/build/CMakeFiles --progress-num=1,2 "Built target mystdapp"
+.PHONY : CMakeFiles/mystdapp.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/mygtool.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mygtool.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 0
-.PHONY : CMakeFiles/mygtool.dir/rule
-
-# Convenience name for target.
-mygtool: CMakeFiles/mygtool.dir/rule
-
-.PHONY : mygtool
-
-# clean rule for target.
-CMakeFiles/mygtool.dir/clean:
-	$(MAKE) -f CMakeFiles/mygtool.dir/build.make CMakeFiles/mygtool.dir/clean
-.PHONY : CMakeFiles/mygtool.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/mytool.dir
-
-# All Build rule for target.
-CMakeFiles/mytool.dir/all:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/depend
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lixiang/ljk_doc/Qt/build/CMakeFiles --progress-num=7,8 "Built target mytool"
-.PHONY : CMakeFiles/mytool.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/mytool.dir/rule: cmake_check_build_system
+CMakeFiles/mystdapp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mytool.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mystdapp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 0
-.PHONY : CMakeFiles/mytool.dir/rule
+.PHONY : CMakeFiles/mystdapp.dir/rule
 
 # Convenience name for target.
-mytool: CMakeFiles/mytool.dir/rule
+mystdapp: CMakeFiles/mystdapp.dir/rule
 
-.PHONY : mytool
-
-# clean rule for target.
-CMakeFiles/mytool.dir/clean:
-	$(MAKE) -f CMakeFiles/mytool.dir/build.make CMakeFiles/mytool.dir/clean
-.PHONY : CMakeFiles/mytool.dir/clean
-
-#=============================================================================
-# Target rules for target gtest/CMakeFiles/mygtest.dir
-
-# All Build rule for target.
-gtest/CMakeFiles/mygtest.dir/all:
-	$(MAKE) -f gtest/CMakeFiles/mygtest.dir/build.make gtest/CMakeFiles/mygtest.dir/depend
-	$(MAKE) -f gtest/CMakeFiles/mygtest.dir/build.make gtest/CMakeFiles/mygtest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lixiang/ljk_doc/Qt/build/CMakeFiles --progress-num=1,2,3 "Built target mygtest"
-.PHONY : gtest/CMakeFiles/mygtest.dir/all
-
-# Build rule for subdir invocation for target.
-gtest/CMakeFiles/mygtest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 3
-	$(MAKE) -f CMakeFiles/Makefile2 gtest/CMakeFiles/mygtest.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lixiang/ljk_doc/Qt/build/CMakeFiles 0
-.PHONY : gtest/CMakeFiles/mygtest.dir/rule
-
-# Convenience name for target.
-mygtest: gtest/CMakeFiles/mygtest.dir/rule
-
-.PHONY : mygtest
+.PHONY : mystdapp
 
 # clean rule for target.
-gtest/CMakeFiles/mygtest.dir/clean:
-	$(MAKE) -f gtest/CMakeFiles/mygtest.dir/build.make gtest/CMakeFiles/mygtest.dir/clean
-.PHONY : gtest/CMakeFiles/mygtest.dir/clean
+CMakeFiles/mystdapp.dir/clean:
+	$(MAKE) -f CMakeFiles/mystdapp.dir/build.make CMakeFiles/mystdapp.dir/clean
+.PHONY : CMakeFiles/mystdapp.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
