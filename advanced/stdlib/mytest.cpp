@@ -2,6 +2,7 @@
 #include <iostream>
 #include "myfile.h"
 #include "mythread.h"
+#include "mychrono.h"
 
 
 using CallbackFunc = std::function<void()>;
@@ -9,11 +10,11 @@ using CallbackFunc = std::function<void()>;
 // 测试回调
 void test_func(const std::string& title, CallbackFunc callback)
 {
-    std::cout << "------" << "[" \
+    std::cout << "------" << "["
         << title << ":test]" 
         << "------" << std::endl;
     callback();
-    std::cout << "----------end---------\n\n";
+    std::cout << "-----------end----------\n\n";
 }
 
 
@@ -77,13 +78,24 @@ void test_thread()
     mythread::demo_thread();
 }
 
+// 时间测试
+void test_time()
+{
+    mychrono::sleep_s(2);
+    mychrono::get_time();
+    mychrono::count_time([]{
+        mychrono::sleep_s(1);
+    });
+}
+
 
 
 int main()
 {
-    test_func("dir",  test_dir);
-    test_func("file", test_file);
-    test_func("thread", test_thread);
+    //test_func("dir",    test_dir);
+    //test_func("file",   test_file);
+    //test_func("thread", test_thread);
+    test_func("time",   test_time);
 
     return 0;
 }

@@ -6,6 +6,16 @@
 
 #IncludeRegexTransform: 
 
+/home/lixiang/ljk_doc/Qt/advanced/stdlib/mychrono.h
+chrono
+-
+thread
+-
+iostream
+-
+functional
+-
+
 /home/lixiang/ljk_doc/Qt/advanced/stdlib/myfile.h
 fstream
 -
@@ -23,6 +33,8 @@ myfile.h
 /home/lixiang/ljk_doc/Qt/advanced/stdlib/myfile.h
 mythread.h
 /home/lixiang/ljk_doc/Qt/advanced/stdlib/mythread.h
+mychrono.h
+/home/lixiang/ljk_doc/Qt/advanced/stdlib/mychrono.h
 
 /home/lixiang/ljk_doc/Qt/advanced/stdlib/mythread.h
 iostream
