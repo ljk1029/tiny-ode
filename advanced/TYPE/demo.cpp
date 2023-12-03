@@ -1,12 +1,15 @@
-#include <iostream>
-#include "type.h"
+
+#include "template.h"
+
+// 模板
+int test_type(){
+    std::cout << "[template_max() function]" << std::endl;
+    return my_type::template_max();
+}
 
 int main()
 {
-    // 测试
-    type_demo::test_memory();
-    type_demo::test_type();
-
+    test_type();
     return 0;
 }
 

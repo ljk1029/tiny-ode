@@ -1,30 +1,48 @@
 #include <iostream>
-#include "demo.h"
+#include "string.h"
+#include "math.h"
+#include "input.h"
+#include "memory.h"
+#include <functional>
 
-using namespace std;
-using namespace io_demo;
+//using namespace std;
+//using namespace io_demo;
 
+using CallbackFunc = std::function<int()>;
 
-// 引用测试
-int test_quote()
+// 测试回调
+int test_func(const std::string& title, CallbackFunc callback)
 {
-    cout << "[引用测试 function]" << endl;
-    int &a = io_demo::my_variable;
-    cout << "value: " << a << " & " << my_variable << endl;
-    cout << "address: " << &a << " & " << &my_variable << endl;
-    return 0;
+    std::cout << "------" << "[" << title << " test]" 
+        << "------" << std::endl;
+    int ret = callback();
+    std::cout << "----------[test end]--------\n";
+    return ret;
 }
 
-int main()
+void test_memory()
+{
+    test_func("memory_new",  my_mem::memory_new);
+    test_func("memory_news", my_mem::memory_news);
+    test_func("smart_ptr",  my_mem::smart_ptr);
+}
+
+int main(int argc, char* argv[])
 {
     // 标准输入测试
-    io_demo::test_cout();
-    io_demo::test_cin();
-    io_demo::test_string();
-    io_demo::test_strings();
+    test_func("io_cin",  my_input::io_cin);
+    test_func("io_cout", my_input::io_cout);
 
     // 引用测试
-    test_quote();
+    test_func("test_quote", my_input::test_quote);
+
+    // 字符串测试
+    test_func("stl_string", my_string::stl_string);
+    test_func("stl_string", my_string::stl_strings);
+    test_func("stl_array",  my_string::stl_array);
+
+    // 指针内存测试
+    test_memory();
 
     return 0;
 }

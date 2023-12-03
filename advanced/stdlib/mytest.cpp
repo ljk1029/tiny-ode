@@ -92,9 +92,9 @@ void test_time()
 
 int main()
 {
-    //test_func("dir",    test_dir);
-    //test_func("file",   test_file);
-    //test_func("thread", test_thread);
+    test_func("dir",    test_dir);
+    test_func("file",   test_file);
+    test_func("thread", test_thread);
     test_func("time",   test_time);
 
     return 0;

@@ -1,0 +1,1 @@
+/usr/bin/c++  -g CMakeFiles/mybase.dir/base/demo.cpp.o -o ../bin/mybase 
