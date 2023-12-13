@@ -4,6 +4,7 @@
 #include <functional>
 
 #include "tooldata.h"
+#include "toolsort.h"
 #include "log.h"
 
 
@@ -202,22 +203,70 @@ void test_log()
 }
 
 
-// 
+
+// 算法测试
+void test_DFS_BFS()
+{
+    int Graph[5][6] = {
+        3, 6, 6, 9, 4, 7,
+        2, 2, 8, 3, 9, 2,
+        8, 3, 1, 1, 3, 6,
+        4, 6, 3, 3, 2, 2,
+        6, 2, 2, 5, 0, 5,
+    }
+
+
+}
+
+
+char *getCmdOption(char **begin, char **end, const std::string &option) {
+    char **itr = std::find(begin, end, option);
+    if (itr != end && ++itr != end) {
+        return *itr;
+    }
+    return nullptr;
+}
+
+bool cmdOptionExists(char **begin, char **end, const std::string &option) {
+    return std::find(begin, end, option) != end;
+}
+
+// 测试函数入口
 int main(int argc, char *argv[]) 
 {
-    // 树
-    info_test_func("test_tree_insrt",  test_tree_insrt);
-    info_test_func("test_tree_delete", test_tree_delete);
-
-    // 表
-    info_test_func("test_list_init",   test_list_init);
-    info_test_func("test_list_add",    test_list_add);
-    info_test_func("test_list_find",   test_list_find);
-    info_test_func("test_list_thread", test_list_thread);
-    info_test_func("test_list_clear",  test_list_clear);
-
+    char *cases_run = getCmdOption(argv, argv + argc, "-case");
+    std::string cases_string;
+    if (cases_run) {
+        cases_string = cases_run;
+    }
+    
     // log
     info_test_func("test_log", test_log);
+
+    if (cases_run == nullptr || cases_string.find("tree") != std::string::npos) {
+        // 树
+        info_test_func("test_tree_insrt",  test_tree_insrt);
+        info_test_func("test_tree_delete", test_tree_delete);
+    } 
+
+    if (cases_run == nullptr || cases_string.find("list") != std::string::npos) {
+        // 表
+        info_test_func("test_list_init",   test_list_init);
+        info_test_func("test_list_add",    test_list_add);
+        info_test_func("test_list_find",   test_list_find);
+        info_test_func("test_list_thread", test_list_thread);
+        info_test_func("test_list_clear",  test_list_clear);
+    } 
+
+    if (cases_run == nullptr || cases_string.find("sort") != std::string::npos) {
+        ;
+    } 
+
+   
+
+   
+
+    
    
     return 0;
 }
