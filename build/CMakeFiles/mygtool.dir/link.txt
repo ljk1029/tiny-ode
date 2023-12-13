@@ -1,0 +1,1 @@
+/usr/bin/c++  -g CMakeFiles/mygtool.dir/gtool.cpp.o CMakeFiles/mygtool.dir/gtest/gtest-all.cc.o -o /root/VMCode/github/B_ToyTool/tool/bin/mygtool  -lpthread 

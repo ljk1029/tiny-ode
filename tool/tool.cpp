@@ -3,17 +3,15 @@
 #include <vector>
 #include <functional>
 
-#include "datatool.h"
+#include "tooldata.h"
 #include "log.h"
 
 
 using CallbackFunc = std::function<void()>;
-
-// 测试回调
-void test_func(const std::string& title, CallbackFunc callback)
+// 测试回调信息打印
+void info_test_func(const std::string& title, CallbackFunc callback)
 {
-    std::cout << "------" << "[" \
-        << title << ":test]" 
+    std::cout << "------" << "[" << title << ":test]" \
         << "------" << std::endl;
     callback();
     std::cout << "--------------end--------------\n\n";
@@ -22,9 +20,9 @@ void test_func(const std::string& title, CallbackFunc callback)
 
 
 // 树测试
-void tree_test1()
+void test_tree_insrt()
 {
-    data_tool::AVLTree<int> avlTree;
+    data_tool::tree::AVLTree<int> avlTree;
     
     // 插入节点
     avlTree.root = avlTree.insertNode(avlTree.root, 5);
@@ -40,9 +38,9 @@ void tree_test1()
     std::cout << std::endl;
 }
 
-void tree_test2()
+void test_tree_delete()
 {
-    data_tool::AVLTree<std::string> avlTree;
+    data_tool::tree::AVLTree<std::string> avlTree;
    
     // 插入节点
     avlTree.root = avlTree.insertNode(avlTree.root, "banana");
@@ -64,24 +62,26 @@ void tree_test2()
     // 删除节点
     //avlTree.root = avlTree.deleteNode(avlTree.root, "apple");
     avlTree.root = avlTree.deleteNode(avlTree.root, "fig");
+
     // 中序遍历
     avlTree.inorderTraversal(avlTree.root);
     std::cout << std::endl;
 }
 
 
+
 // 链表测试
-void list_test1()
+void test_list_init()
 {
-    data_tool::CustomLinkedList<int> list;
+    data_tool::list::CustomLinkedList<int> list;
     list.print("test1");
     list.Clear();
     list.print("test1");
 }
 
-void list_test2()
+void test_list_add()
 {
-    data_tool::CustomLinkedList<int> list;
+    data_tool::list::CustomLinkedList<int> list;
     int data = 42;
     int key = 1;
 
@@ -97,9 +97,9 @@ void list_test2()
     list.print("test2, Del");
 }
 
-void list_test3()
+void test_list_find()
 {
-    data_tool::CustomLinkedList<std::string> list;
+    data_tool::list::CustomLinkedList<std::string> list;
     std::string data1 = "42";
     std::string data2 = "100";
     int key1 = 1;
@@ -118,10 +118,9 @@ void list_test3()
     std::cout << foundData2 <<std::endl;
 }
 
-
-void list_test4()
+void test_list_thread()
 {
-    data_tool::CustomLinkedList<std::string> list;
+    data_tool::list::CustomLinkedList<std::string> list;
     std::vector<std::thread> threads;
     const int num_threads = 10;
     const int num_adds = 100;
@@ -163,10 +162,9 @@ void list_test4()
     std::cout << list.GetSize() <<std::endl;
 }
 
-
-void list_test5()
+void test_list_clear()
 {
-    data_tool::CustomLinkedList<std::string> list(10, true);
+    data_tool::list::CustomLinkedList<std::string> list(10, true);
     const int num_adds = 12;
     for (int i = 0; i < num_adds; i++) {
         std::string data = "String_" + std::to_string(i);
@@ -194,8 +192,10 @@ void list_test5()
     list.print("change");
 }
 
+
+
 // 日志测试
-void log_test()
+void test_log()
 {
     log_tool::log_test();
     log_tool::log(1, "log:", 45);
@@ -206,18 +206,18 @@ void log_test()
 int main(int argc, char *argv[]) 
 {
     // 树
-    test_func("tree_test1", tree_test1);
-    test_func("tree_test2", tree_test2);
+    info_test_func("test_tree_insrt",  test_tree_insrt);
+    info_test_func("test_tree_delete", test_tree_delete);
 
     // 表
-    test_func("list_test1", list_test1);
-    test_func("list_test2", list_test2);
-    test_func("list_test3", list_test3);
-    test_func("list_test4", list_test4);
-    test_func("list_test5", list_test5);
+    info_test_func("test_list_init",   test_list_init);
+    info_test_func("test_list_add",    test_list_add);
+    info_test_func("test_list_find",   test_list_find);
+    info_test_func("test_list_thread", test_list_thread);
+    info_test_func("test_list_clear",  test_list_clear);
 
     // log
-    test_func("log_test", log_test);
+    info_test_func("test_log", test_log);
    
     return 0;
 }

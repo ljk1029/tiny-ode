@@ -1,9 +1,9 @@
 
-#include "datatool.h"
+#include "tooldata.h"
 // 使用data_tool
 // 编译加g++ -std=c++17 gtool.cpp -lgtest -lgtest_main -lpthread
 using namespace data_tool;
-
+using namespace data_tool::list;
 
 
 //gtest测试框架
@@ -14,7 +14,6 @@ using namespace data_tool;
 TEST(CustomLinkedListTest, EmptyList) {
     CustomLinkedList<int> list;
     EXPECT_EQ(list.GetSize(), 0);
-
     list.Clear();
     EXPECT_EQ(list.GetSize(), 0);
 }
@@ -27,12 +26,9 @@ TEST(CustomLinkedListTest, AddAndDelete) {
 
     EXPECT_TRUE(list.Add(key, data));
     EXPECT_EQ(list.GetSize(), 1);
-
     EXPECT_FALSE(list.Add(key, data)); // Adding the same key again should fail
-
     EXPECT_TRUE(list.Delete(key));
     EXPECT_EQ(list.GetSize(), 0);
-
     EXPECT_FALSE(list.Delete(key)); // Deleting a non-existent key should fail
 }
 
@@ -43,16 +39,13 @@ TEST(CustomLinkedListTest, Find) {
     std::string data2 = "100";
     int key1 = 1;
     int key2 = 2;
-
     EXPECT_TRUE(list.Add(key1, data1));
     EXPECT_TRUE(list.Add(key2, data2));
 
     std::string  foundData1;
     std::string  foundData2;
-
     EXPECT_TRUE(list.Find(key1, foundData1));
     EXPECT_TRUE(list.Find(key2, foundData2));
-
     EXPECT_EQ(foundData1, data1);
     EXPECT_EQ(foundData2, data2);
 }
@@ -62,7 +55,6 @@ TEST(CustomLinkedListTest, MultipleThreads) {
     CustomLinkedList<std::string> list;
     const int num_threads = 10;
     const int num_adds = 100;
-
     std::vector<std::thread> threads;
 
     // 启动多个线程进行添加操作
@@ -75,7 +67,7 @@ TEST(CustomLinkedListTest, MultipleThreads) {
         });
     }
 
-    //list.print();
+    // list.print();
 
     // 等待所有线程完成
     for (auto& thread : threads) {
@@ -113,7 +105,6 @@ TEST(CustomLinkedListTest, content)
         std::string data = "String_" + std::to_string(i);
         list.Add(i, data);
     }
-
     list.print();
 
     // 验证列表大小是否正确
@@ -138,13 +129,14 @@ TEST(CustomLinkedListTest, content)
         std::string data = "String_" + std::to_string(i);
         list.Add(i+8, data);
     }
-
     list.print("change");
 }
 
-// Add more test cases as needed
 
-int main(int argc, char** argv) {
+
+// Add more test cases as needed
+int main(int argc, char** argv) 
+{
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
