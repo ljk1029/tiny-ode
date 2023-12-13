@@ -28,7 +28,7 @@ stl 使用
 数据结构
 
 树的旋转说明
-![image]() https://github.com/ljk1029/ToyTool/tree/main/img/tree.png
+![image]()(https://github.com/ljk1029/ToyTool/tree/main/img/tree.png)
 
 ### gtest 安装
 地址:https://github.com/google/googletest.git
