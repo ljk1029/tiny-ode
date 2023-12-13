@@ -27,6 +27,9 @@ stl 使用
 ## tool
 数据结构
 
+树的旋转说明
+![image]() https://github.com/ljk1029/ToyTool/tree/main/img/tree.png
+
 ### gtest 安装
 地址:https://github.com/google/googletest.git
 
@@ -41,6 +44,7 @@ sudo cp -r include/gtest /usr/local/include
 g++ -std=c++17 test.cpp -lgtest -lgtest_main -lpthread
 
 ## 提交类型
-  - feat: 新功能（feature）
-  - fix: 修补bug
+  - feat:     新功能（feature）
+  - fix:      修补bug
   - refactor: 重构
+  - update:   更新

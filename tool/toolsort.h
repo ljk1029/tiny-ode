@@ -3,7 +3,16 @@
 
 
 namespace sort_tool{
-    
+void DFS()
+{
+
+}
+
+void BFS()
+{
+
+}
+
 }
 
 #endif
