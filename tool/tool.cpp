@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include <time.h>
 
 #include "tooldata.h"
 #include "toolsort.h"
@@ -204,20 +205,88 @@ void test_log()
 
 
 
+
+
+
+std::vector<std::vector<int>> genrate_rand_array()
+{
+    std::vector<std::vector<int>> ret;
+    // 使用当前时间作为随机数生成器的种子
+    srand((unsigned) time(NULL));
+    //int n = rand()%20+1;
+    //int m = rand()%20+1;
+    int n = 5, m = 7;
+    std::cout <<  "n: " << n << " m: " << m << std::endl;
+    ret.resize(n);
+    for(int i=0; i<n; i++)
+    {
+        std::cout << "[ ";
+        ret[i].reserve(m);
+        for(int j=0; j<m; j++)
+        {
+            int t = rand()%2;
+            ret[i].push_back(t);
+            std::cout << t << ", ";
+        }
+        std::cout << " ]" << std::endl;
+    }
+    return ret;
+}
+
 // 算法测试
 void test_DFS_BFS()
 {
-    int Graph[5][6] = {
-        3, 6, 6, 9, 4, 7,
-        2, 2, 8, 3, 9, 2,
-        8, 3, 1, 1, 3, 6,
-        4, 6, 3, 3, 2, 2,
-        6, 2, 2, 5, 0, 5,
-    }
-
-
+    std::vector<std::vector<int>> array = genrate_rand_array();
+    /* std::vector<std::vector<int>> array = {
+        {1, 1, 1, 0, 1, 1, 0},
+        {1, 1, 1, 1, 1, 0, 0},
+        {0, 0, 0, 1, 0, 1, 0},  
+        {1, 0, 0, 1, 0, 0, 0},  
+        {0, 1, 0, 1, 1, 1, 0}
+    }; */
+    std::cout << "DFS find path result: " << sort_tool::DFS(array) << std::endl;
+    std::cout << "BFS find path result: " << sort_tool::BFS(array) << std::endl;
 }
 
+void sort_print(const int array[], int len)
+{
+    for(int i=0; i<len; i++)
+        std::cout << array[i] << ' ';
+    std::cout << std::endl;
+}
+
+// 
+void test_sort_algorithm()
+{
+#define SORT_SIZE 10
+    const int number[SORT_SIZE] = {95, 45, 15, 78, 84, 51, 24, 12, 89, 21};
+    int sort1[SORT_SIZE], sort2[SORT_SIZE], sort3[SORT_SIZE], sort4[SORT_SIZE],
+        sort5[SORT_SIZE], sort6[SORT_SIZE], sort7[SORT_SIZE], sort8[SORT_SIZE]; 
+    std::copy(number, number+SORT_SIZE, sort1);
+    std::copy(number, number+SORT_SIZE, sort2);
+    std::copy(number, number+SORT_SIZE, sort3);
+    std::copy(number, number+SORT_SIZE, sort4);
+    std::copy(number, number+SORT_SIZE, sort5);
+    std::copy(number, number+SORT_SIZE, sort6);
+    std::copy(number, number+SORT_SIZE, sort7);
+    std::copy(number, number+SORT_SIZE, sort8);
+
+    sort_print(sort1, SORT_SIZE);
+    sort_tool::bubble_sort(sort1, SORT_SIZE);
+    sort_print(sort1, SORT_SIZE);
+
+    sort_print(sort2, SORT_SIZE);
+    sort_tool::insert_sort(sort2, SORT_SIZE);
+    sort_print(sort2, SORT_SIZE);
+
+    sort_print(sort3, SORT_SIZE);
+    sort_tool::quick_sort(sort3, 0, SORT_SIZE-1);
+    sort_print(sort3, SORT_SIZE);
+
+    sort_print(sort4, SORT_SIZE);
+    sort_tool::select_sort(sort4, SORT_SIZE);
+    sort_print(sort4, SORT_SIZE);
+}
 
 char *getCmdOption(char **begin, char **end, const std::string &option) {
     char **itr = std::find(begin, end, option);
@@ -259,7 +328,9 @@ int main(int argc, char *argv[])
     } 
 
     if (cases_run == nullptr || cases_string.find("sort") != std::string::npos) {
-        ;
+        info_test_func("test_DFS_BFS",     test_DFS_BFS);
+        info_test_func("test_sort_algorithm", test_sort_algorithm);
+        
     } 
 
    

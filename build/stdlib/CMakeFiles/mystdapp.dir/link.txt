@@ -1,0 +1,1 @@
+/usr/bin/c++   -g -g   CMakeFiles/mystdapp.dir/mytest.cpp.o  -o /home/lixiang/ljk_test/OS/ToyTool/advanced/bin/mystdapp  -lpthread 

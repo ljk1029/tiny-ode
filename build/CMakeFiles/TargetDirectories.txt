@@ -1,7 +1,8 @@
-/root/VMCode/github/B_ToyTool/build/CMakeFiles/mytool.dir
-/root/VMCode/github/B_ToyTool/build/CMakeFiles/mygtool.dir
-/root/VMCode/github/B_ToyTool/build/CMakeFiles/edit_cache.dir
-/root/VMCode/github/B_ToyTool/build/CMakeFiles/rebuild_cache.dir
-/root/VMCode/github/B_ToyTool/build/gtest/CMakeFiles/mygtest.dir
-/root/VMCode/github/B_ToyTool/build/gtest/CMakeFiles/edit_cache.dir
-/root/VMCode/github/B_ToyTool/build/gtest/CMakeFiles/rebuild_cache.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/edit_cache.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mytype.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mystl.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/rebuild_cache.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mybase.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/rebuild_cache.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/edit_cache.dir
+/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/mystdapp.dir

@@ -1,0 +1,1 @@
+/usr/bin/c++   -g   CMakeFiles/mytype.dir/type/demo.cpp.o  -o /home/lixiang/ljk_test/OS/ToyTool/advanced/bin/mytype 

@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/type/demo.cpp
+template.h
+/home/lixiang/ljk_test/OS/ToyTool/advanced/type/template.h
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/type/template.h
+iostream
+-
+

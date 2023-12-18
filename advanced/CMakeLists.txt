@@ -18,11 +18,13 @@ add_executable(mybase
         ${CMAKE_CURRENT_SOURCE_DIR}/base/demo.cpp
     )
 
+# stl
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/stl/)
 add_executable(mystl
         ${CMAKE_CURRENT_SOURCE_DIR}/stl/demo.cpp
     )
 
+# template
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/type/)
 add_executable(mytype
     ${CMAKE_CURRENT_SOURCE_DIR}/type/demo.cpp

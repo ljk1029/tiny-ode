@@ -15,7 +15,7 @@ function build(){
 }
 
 function run(){
-    #export LD_LIBRARY_PATH=~/workspace/apps/test/task/lib
+    #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/workspace/apps/test/task/lib
     cd $build_path
     $build_path//$APP_name
 }

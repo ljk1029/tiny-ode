@@ -98,7 +98,7 @@ void Qsort(int a[], int low, int high)
 void select_sort(int *a,int n)
 {
     printf("选择排序:");
-    int i,j,min,t;
+    int i,j, min, t;
     for(i = 0; i < n-1; i++)
     {
         min = i;//查找最小值

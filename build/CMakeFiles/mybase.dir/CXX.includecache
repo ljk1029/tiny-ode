@@ -1,0 +1,46 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/demo.cpp
+iostream
+-
+string.h
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/string.h
+math.h
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/math.h
+input.h
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/input.h
+memory.h
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/memory.h
+functional
+-
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/input.h
+iostream
+-
+string
+-
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/math.h
+cmath
+-
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/memory.h
+iostream
+-
+memory
+-
+
+/home/lixiang/ljk_test/OS/ToyTool/advanced/base/string.h
+iostream
+-
+string
+-
+array
+-
+

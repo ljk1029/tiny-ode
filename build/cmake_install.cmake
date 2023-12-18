@@ -1,4 +1,4 @@
-# Install script for directory: /root/VMCode/github/B_ToyTool/tool
+# Install script for directory: /home/lixiang/ljk_test/OS/ToyTool/advanced
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -37,14 +37,9 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
   set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
-# Set default install directory permissions.
-if(NOT DEFINED CMAKE_OBJDUMP)
-  set(CMAKE_OBJDUMP "/usr/bin/objdump")
-endif()
-
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/root/VMCode/github/B_ToyTool/build/gtest/cmake_install.cmake")
+  include("/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -55,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/root/VMCode/github/B_ToyTool/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/lixiang/ljk_test/OS/ToyTool/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
