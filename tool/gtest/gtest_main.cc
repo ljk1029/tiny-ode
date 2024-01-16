@@ -28,6 +28,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <cstdio>
+#include <iostream>
 #include "gtest/gtest.h"
 
 #if GTEST_OS_ESP8266 || GTEST_OS_ESP32
@@ -45,10 +46,6 @@ void loop() { RUN_ALL_TESTS(); }
 #endif
 
 #else
-
-
-
-#include "iostream"
 
 
 // 需要测试例程

@@ -1,8 +1,0 @@
-/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/edit_cache.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mytype.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mystl.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/rebuild_cache.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/CMakeFiles/mybase.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/rebuild_cache.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/edit_cache.dir
-/home/lixiang/ljk_test/OS/ToyTool/build/stdlib/CMakeFiles/mystdapp.dir

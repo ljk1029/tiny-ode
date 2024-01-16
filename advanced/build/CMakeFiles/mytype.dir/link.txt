@@ -1,1 +1,0 @@
-/usr/bin/c++  -g CMakeFiles/mytype.dir/type/demo.cpp.o -o ../bin/mytype 

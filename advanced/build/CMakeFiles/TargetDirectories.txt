@@ -1,8 +1,0 @@
-/root/VMCode/github/B_Toy/advanced/build/CMakeFiles/mybase.dir
-/root/VMCode/github/B_Toy/advanced/build/CMakeFiles/mystl.dir
-/root/VMCode/github/B_Toy/advanced/build/CMakeFiles/mytype.dir
-/root/VMCode/github/B_Toy/advanced/build/CMakeFiles/edit_cache.dir
-/root/VMCode/github/B_Toy/advanced/build/CMakeFiles/rebuild_cache.dir
-/root/VMCode/github/B_Toy/advanced/build/stdlib/CMakeFiles/mystdapp.dir
-/root/VMCode/github/B_Toy/advanced/build/stdlib/CMakeFiles/edit_cache.dir
-/root/VMCode/github/B_Toy/advanced/build/stdlib/CMakeFiles/rebuild_cache.dir

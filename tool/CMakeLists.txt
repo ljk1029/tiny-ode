@@ -1,10 +1,8 @@
 cmake_minimum_required(VERSION 3.16)
 project(mytool)
 
-
 # 添加编译选项
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
-
 
 # 设置C++版本
 #set(CMAKE_CXX_STANDARD 11)
@@ -12,30 +10,31 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
 # 添加头文件搜索路径
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/gtest)
 
-
-# 开源库
+# 指定搜索开源库头文件位置
 #include_directories(./thirdparty/protobuf/include)
 #link_directories(./thirdparty/protobuf/lib)
 
-# 搜索指定的库文件
+# 指定搜索开源库库文件位置
 #find_library(LIB_PROTOBUF protobuf HINTS ./thirdparty/protobuf/lib)
-
 
 # 添加源文件
 file(GLOB_RECURSE SRC_FILES 
     #./app/src/*.cpp
     )
 
+##
+#   1、添加第一个执行文件
+##
 # 生成可执行文件
 add_executable(mytool 
         tool.cpp
         #${SRC_FILES}
     )
-
 
 # 链接线程库
 #find_package(Threads REQUIRED)
@@ -44,24 +43,9 @@ target_link_libraries(mytool
     #${LIB_PROTOBUF}
     )    
 
-# 设置输出路径
-set_target_properties(mytool PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-
-
-
 
 ##
-#   添加一个子模块
-##
-# 添加子目录，包含 gtest 的构建
-add_subdirectory(gtest)
-
-
-
-
-##
-#   添加第二个执行文件
+#   2、添加第二个执行文件
 ##
 # 添加源文件
 add_executable(mygtool gtool.cpp ${CMAKE_CURRENT_SOURCE_DIR}/gtest/gtest-all.cc)
@@ -71,6 +55,13 @@ target_link_libraries(mygtool
     )    
 
 # 设置输出路径
-set_target_properties(mygtool PROPERTIES
+set_target_properties(mygtool mytool PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
 )
+
+
+##
+#   3、添加一个子模块
+##
+# 添加子目录，包含 gtest 的构建
+add_subdirectory(gtest)
