@@ -2,14 +2,14 @@
   C++ study
   Qt study
 
-
 ## doc
-
+  文档说明
 
 ## qt
+  qt部分
 
 
-
+# code
 ## advanced
   C++ 一些使用 
 ### base
@@ -31,7 +31,8 @@
   ![image](https://github.com/ljk1029/ToyTool/tree/main/img/tree.png)
 
 
-### gtest 安装
+# c++工具
+## gtest 安装
   1、地址:https://github.com/google/googletest.git
 
   2、编译 cmake .. / make

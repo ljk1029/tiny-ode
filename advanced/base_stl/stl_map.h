@@ -22,7 +22,6 @@ int map_make()
 
     // 访问 map 中的元素
     std::cout << "make map: " << studentScores["Alice"] << std::endl;
-
     return 0;
 }
 
@@ -40,7 +39,6 @@ int map_iterator()
     {
         std::cout << it->first << ": " << it->second << std::endl;
     }
-
     return 0;
 }
 
@@ -62,7 +60,6 @@ int map_find()
     {
         std::cout << "Bob not found." << std::endl;
     }
-
     return 0;
 }
 
@@ -83,7 +80,6 @@ int map_erase()
     {
         std::cout << pair.first << ": " << pair.second << std::endl;
     }
-
     return 0;
 }
 

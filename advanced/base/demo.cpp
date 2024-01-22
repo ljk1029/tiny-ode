@@ -1,8 +1,8 @@
 #include <iostream>
-#include "string.h"
-#include "math.h"
-#include "input.h"
-#include "memory.h"
+#include "base_string.h"
+#include "base_math.h"
+#include "base_input.h"
+#include "base_memory.h"
 #include <functional>
 
 //using namespace std;
@@ -11,39 +11,40 @@
 using CallbackFunc = std::function<int()>;
 
 // 测试回调
-int test_func(const std::string& title, CallbackFunc callback)
+int func_print(const std::string& title, CallbackFunc callback)
 {
-    std::cout << "------" << "[" << title << " test]" 
-        << "------" << std::endl;
+    std::cout << "======" << "[" << title << " test]" << "=====" << std::endl;
     int ret = callback();
-    std::cout << "----------[test end]--------\n";
+    std::cout << "--------[test end]--------\n\n";
     return ret;
 }
 
-void test_memory()
-{
-    test_func("memory_new",  my_mem::memory_new);
-    test_func("memory_news", my_mem::memory_news);
-    test_func("smart_ptr",  my_mem::smart_ptr);
-}
-
-int main(int argc, char* argv[])
+int main_test(int argc, char* argv[])
 {
     // 标准输入测试
-    test_func("io_cin",  my_input::io_cin);
-    test_func("io_cout", my_input::io_cout);
+    func_print("io_cin",  my_input::io_cin);
+    func_print("io_cout", my_input::io_cout);
 
     // 引用测试
-    test_func("test_quote", my_input::test_quote);
+    func_print("test_quote", my_input::fun_quote);
 
     // 字符串测试
-    test_func("stl_string", my_string::stl_string);
-    test_func("stl_string", my_string::stl_strings);
-    test_func("stl_array",  my_string::stl_array);
+    func_print("stl_string", my_string::stl_string);
+    func_print("stl_string", my_string::stl_strings);
+    func_print("stl_array",  my_string::stl_array);
 
     // 指针内存测试
-    test_memory();
+    func_print("memory_new",  my_mem::memory_new);
+    func_print("memory_news", my_mem::memory_news);
+    func_print("smart_ptr",   my_mem::smart_ptr);
+    func_print("smart_ptrs",  my_mem::smart_ptrs);
+    return 0;
+}
 
+// 测试用例
+int main(int argc, char* argv[])
+{
+    main_test(argc, argv);
     return 0;
 }
 

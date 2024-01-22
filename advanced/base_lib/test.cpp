@@ -1,27 +1,24 @@
 #include <functional>
 #include <iostream>
-#include "myfile.h"
-#include "mythread.h"
-#include "mychrono.h"
+#include "lib_file.h"
+#include "lib_thread.h"
+#include "lib_chrono.h"
 
 
 using CallbackFunc = std::function<void()>;
 
 // 测试回调
-void test_func(const std::string& title, CallbackFunc callback)
+void func_print(const std::string& title, CallbackFunc callback)
 {
-    std::cout << "------" << "["
-        << title << ":test]" 
-        << "------" << std::endl;
+    std::cout << "======" << "[" << title << " test]" << "=====" << std::endl;
     callback();
-    std::cout << "-----------end----------\n\n";
+    std::cout << "--------[test end]--------\n\n";
 }
-
 
 // 目录文件测试
 void test_dir()
 {
-    myfile::Path new_path = {"mydir/mkB"};
+    myfile::Path_Const new_path = {"mydir/mkB"};
 
     std::cout << "getPath:" << myfile::getPath() << std::endl;
     if(myfile::createDir(myfile::dir_path))
@@ -75,7 +72,7 @@ void test_file()
 // 线程测试
 void test_thread()
 {
-    mythread::demo_thread();
+    mythread::create_thread();
 }
 
 // 时间测试
@@ -88,14 +85,18 @@ void test_time()
     });
 }
 
-
-
-int main()
+int main_test(int argc, char* argv[])
 {
-    test_func("dir",    test_dir);
-    test_func("file",   test_file);
-    test_func("thread", test_thread);
-    test_func("time",   test_time);
+    func_print("dir",    test_dir);
+    func_print("file",   test_file);
+    func_print("thread", test_thread);
+    func_print("time",   test_time);
+    return 0;
+}
 
+// 测试用例
+int main(int argc, char* argv[])
+{
+    main_test(argc, argv);
     return 0;
 }

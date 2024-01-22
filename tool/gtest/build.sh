@@ -23,7 +23,7 @@ function usage() {
     echo
 }
 
-
+# main
 if [ $# -eq 1 ];then
     if [ $1 == 'b' ];then
         build

@@ -4,22 +4,20 @@
 #include <functional>
 #include <time.h>
 
-#include "tooldata.h"
-#include "toolsort.h"
+#include "tool_data.h"
+#include "tool_sort.h"
 #include "log.h"
 
 
 using CallbackFunc = std::function<void()>;
-// 测试回调信息打印
-void info_test_func(const std::string& title, CallbackFunc callback)
+// 测试回调
+int func_print(const std::string& title, CallbackFunc callback)
 {
-    std::cout << "------" << "[" << title << ":test]" \
-        << "------" << std::endl;
+    std::cout << "======" << "[" << title << " test]" << "=====" << std::endl;
     callback();
-    std::cout << "--------------end--------------\n\n";
+    std::cout << "--------[test end]--------\n\n";
+    return 0;
 }
-
-
 
 // 树测试
 void test_tree_insrt()
@@ -194,8 +192,6 @@ void test_list_clear()
     list.print("change");
 }
 
-
-
 // 日志测试
 void test_log()
 {
@@ -203,11 +199,9 @@ void test_log()
     log_tool::log(1, "log:", 45);
 }
 
-
-
-
-
-
+/**
+ * 算法测试
+*/
 std::vector<std::vector<int>> genrate_rand_array()
 {
     std::vector<std::vector<int>> ret;
@@ -310,34 +304,26 @@ int main(int argc, char *argv[])
     }
     
     // log
-    info_test_func("test_log", test_log);
+    func_print("test_log", test_log);
 
+    // 树
     if (cases_run == nullptr || cases_string.find("tree") != std::string::npos) {
-        // 树
-        info_test_func("test_tree_insrt",  test_tree_insrt);
-        info_test_func("test_tree_delete", test_tree_delete);
+        func_print("test_tree_insrt",  test_tree_insrt);
+        func_print("test_tree_delete", test_tree_delete);
     } 
-
+    // 表
     if (cases_run == nullptr || cases_string.find("list") != std::string::npos) {
-        // 表
-        info_test_func("test_list_init",   test_list_init);
-        info_test_func("test_list_add",    test_list_add);
-        info_test_func("test_list_find",   test_list_find);
-        info_test_func("test_list_thread", test_list_thread);
-        info_test_func("test_list_clear",  test_list_clear);
+        func_print("test_list_init",   test_list_init);
+        func_print("test_list_add",    test_list_add);
+        func_print("test_list_find",   test_list_find);
+        func_print("test_list_thread", test_list_thread);
+        func_print("test_list_clear",  test_list_clear);
     } 
-
+    // 搜索
     if (cases_run == nullptr || cases_string.find("sort") != std::string::npos) {
-        info_test_func("test_DFS_BFS",     test_DFS_BFS);
-        info_test_func("test_sort_algorithm", test_sort_algorithm);
+        func_print("test_DFS_BFS",     test_DFS_BFS);
+        func_print("test_sort_algorithm", test_sort_algorithm);
         
     } 
-
-   
-
-   
-
-    
-   
     return 0;
 }

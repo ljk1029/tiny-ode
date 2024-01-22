@@ -39,7 +39,6 @@ int set_all()
     if (numbers.empty()) {
         std::cout << "Set is empty." << std::endl;
     }
-
     return 0;
 }
 

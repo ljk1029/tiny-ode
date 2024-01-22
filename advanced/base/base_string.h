@@ -6,7 +6,6 @@
 #include <array>
 
 namespace my_string{
-
 // 字符串 属于stl，自动释放
 int stl_string()
 {
@@ -50,7 +49,6 @@ int stl_string()
     //  起始位置，替换掉的字符长度和替换为字符串
     str1.replace(found, 5, "Universe"); // 替换子字符串
     std::cout << "字符替换为: " << str1 << std::endl;
-
     return 0;
 }
 
@@ -80,7 +78,6 @@ int stl_strings()
     for (char c : numStr) {
         std::cout << "遍历: " << c << std::endl;
     }
-
     return 0;
 }
 
@@ -102,7 +99,6 @@ int stl_array()
     {
         std::cout << element << std::endl;
     }
-
     return 0;
 }  
 

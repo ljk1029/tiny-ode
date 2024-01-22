@@ -14,13 +14,15 @@
 
 
 namespace mythread{
-
+// 锁
 std::mutex mtx;
 std::condition_variable cv;
 bool isDataReady = false;
 int sharedData = 0;
 
-void producer(const char* name) {
+// 生产者
+void producer(const char* name) 
+{
     while( sharedData < 10){
         std::this_thread::sleep_for(std::chrono::seconds(1)); // 模拟生产数据的耗时操作
 
@@ -35,7 +37,9 @@ void producer(const char* name) {
     std::cout << "producer exit" << std::endl;
 }
 
-void consumer() {
+// 消费者
+void consumer() 
+{
     static int cnt = 0;
     while( sharedData < 10 ){
         if(cnt >= sharedData)
@@ -54,18 +58,15 @@ void consumer() {
     }
     std::cout << "consumer exit" << std::endl;
 }
-
-void demo_thread()
+// 创建
+void create_thread()
 {
     std::thread t1(producer, "thread_");
     std::thread t2(consumer);
-
     t1.detach(); // 分离式
-
     if (t2.joinable()) { // 判断线程是否可被合并或分离
         t2.join();       // 等待线程结束
     }
-
     std::cout << "Shared data: " << sharedData << std::endl;
 }
 

@@ -19,14 +19,14 @@
 
 
 namespace my_mem{
-
 // 开辟单维数组
 int memory_new()
 {
     int *p1 = new int;
     int *p2 = new int(2);  // 初始化2
     int *p3 = new int[10]; // 开辟10个int
-
+    std::cout << "new int:"    << *p1 << std::endl;
+    std::cout << "new int(2):" << *p2 << std::endl;
     delete p1;
     delete p2;
     delete[] p3;
@@ -36,16 +36,19 @@ int memory_new()
 // 开辟多维数组
 int memory_news()
 {
+    int n = 3;
     // 创建一个二维整数数组
-    int* arr = new int[3]; // 创建指向 int* 的指针数组
-
+    int* arr = new int[n]; // 创建指向 int* 的指针数组
+    std::cout << "int[3]:";
+    for(int i=0; i<n; i++)
+        std::cout << arr[i] << " ";
+    std::cout << std::endl;
     delete[] arr; // 释放指针数组
     return 0;
 }
 
 // 智能指针
-int smart_ptr() 
-{
+int smart_ptr() {
     // 使用 std::shared_ptr
     std::shared_ptr<int> sharedPtr1 = std::make_shared<int>(42);
     std::shared_ptr<int> sharedPtr2 = sharedPtr1; // 共享所有权
@@ -62,6 +65,27 @@ int smart_ptr()
     // 在作用域结束时，智能指针会自动释放资源，不需要手动调用 delete
     return 0;
 }  
+
+// 多维智能指针
+int smart_ptrs() {
+    const size_t n = 10; 
+
+    // 创建一个 shared_ptr 来管理 int 的数组
+    std::shared_ptr<int> sharedPtr1(new int[n], std::default_delete<int[]>());
+
+    // 初始化数组
+    for (size_t i = 0; i < n; ++i) {
+        sharedPtr1.get()[i] = static_cast<int>(i); // 或者 *(sharedPtr1.get() + i)
+    }
+
+    // 打印测试
+    for (size_t i = 0; i < n; ++i) {
+        std::cout << sharedPtr1.get()[i] << " ";
+    }
+    std::cout << std::endl; // Should
+    return 0;
+}
+
 }
 
 #endif 

@@ -26,44 +26,47 @@ std::filesystem::recursive_directory_iterator：递归遍历目录中的文件�
 */
 
 namespace myfile{
-using Path = const std::filesystem::path;
+using Path_Const = const std::filesystem::path;
 
-Path dir_path{"mydir"};
-Path dirs_path{"mydir/dirB"};
+Path_Const dir_path{"mydir"};
+Path_Const dirs_path{"mydir/dirB"};
 
-Path getPath()
+/**
+ * 文件夹、路径操作
+*/
+Path_Const getPath()
 {
     return std::filesystem::current_path();
 }
 
-bool isExist(Path path)
+bool isExist(Path_Const path)
 {
     return std::filesystem::exists(path);
 }
 
-bool isDir(Path path)
+bool isDir(Path_Const path)
 {
     return std::filesystem::is_directory(path);
 }
 
 // 是否普通文件，非目录，软连接，设备文件
-bool isFile(Path path)
+bool isFile(Path_Const path)
 {
     return std::filesystem::is_regular_file(path);
 }
 
-bool createDir(Path path)
+bool createDir(Path_Const path)
 {
     return std::filesystem::create_directory(path);
 }
 
-bool createDirs(Path path)
+bool createDirs(Path_Const path)
 {
     return std::filesystem::create_directories(path);
 }
 
 // 只能删除空文件夹
-void reMove(Path path)
+void reMove(Path_Const path)
 {
     for (const auto& entry : std::filesystem::directory_iterator(path)) {
         if (std::filesystem::is_directory(entry)) {
@@ -78,12 +81,12 @@ void reMove(Path path)
 }
 
 // 只能修改单级命名
-void reName(Path path, Path new_path)
+void reName(Path_Const path, Path_Const new_path)
 {
     std::filesystem::rename(path, new_path);
 }
 
-void iteratorDir(Path path)
+void iteratorDir(Path_Const path)
 {
     // 遍历本文件夹下文件
     for (const auto& file : std::filesystem::directory_iterator(path)) {
@@ -96,8 +99,9 @@ void iteratorDir(Path path)
     }
 }
 
-
-
+/**
+ * 文件读写操作
+*/
 // 写
 void writeFile(const char* &file)
 {

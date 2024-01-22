@@ -28,16 +28,15 @@ int io_cin()
     std::cin.ignore(); //忽略回车
     getline(std::cin, name);
 
-    std::cout << "你输入的整数是:   " << number << std::endl;
-    std::cout << "你输入的字符串是: " << name   << std::endl;
+    std::cout << "你输入的整数是:    " << number << std::endl;
+    std::cout << "你输入的字符串是:  " << name   << std::endl;
     return 0;
 }
 
-int my_variable = 42;
-
 // 引用测试
-int test_quote(){
+int fun_quote(){
     std::cout << "[引用测试 function]" << std::endl;
+    int my_variable = 42;
     int &a = my_variable;
     std::cout << "value:   " << a  << " & " << my_variable  << std::endl;
     std::cout << "address: " << &a << " & " << &my_variable << std::endl;

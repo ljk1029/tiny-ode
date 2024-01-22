@@ -22,7 +22,6 @@ int list_make()
         std::cout << num << " ";
     }
     std::cout << std::endl;
-
     return 0;
 }
 
@@ -45,7 +44,6 @@ int list_iterator()
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-
     return 0;
 }
 
@@ -70,7 +68,6 @@ int list_remove()
     }
     std::cout << std::endl;
 
-
     //删除2
     std::list<int>::iterator pos = std::find(numbers.begin(), numbers.end(), 2);
 	numbers.erase(pos); 
@@ -88,7 +85,6 @@ int list_remove()
     if (numbers.empty()) {
         std::cout << "List is empty." << std::endl;
     }
-
     return 0;
 }
 

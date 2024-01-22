@@ -20,6 +20,7 @@ int math_rand()
 {
     return 0;
 }
+
 }
 
 #endif 

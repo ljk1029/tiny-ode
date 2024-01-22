@@ -16,7 +16,7 @@ void print(std::vector<int> numbers, std::string title)
     std::cout << std::endl;
 }
 
-// 重载
+// 重载打印
 void print(std::vector<int> numbers, std::string title, char bracket)
 {
     if(bracket == '(' || bracket == ')')
@@ -66,7 +66,6 @@ int verctor_at()
     std::cout << "element: " << numbers[0] << std::endl;
     std::cout << "element: " << numbers.at(1) << std::endl;
     std::cout << "element: "  << numbers.back() << std::endl;
-
     return 0;
 }
 
@@ -93,7 +92,6 @@ int verctor_erase()
     {
         std::cout << "Vector is empty." << std::endl;
     }
-
     return 0;
 }
 
@@ -109,8 +107,8 @@ int verctor_iterator()
         std::cout << *it << " ";
     }
     std::cout << std::endl;
-
     return 0;
 }
+
 }
 #endif 
