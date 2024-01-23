@@ -1,66 +1,12 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
-#include <condition_variable>
-
 // unix
 #include <unistd.h>
 
 
-
 // 锁
 std::mutex mtx;
-std::condition_variable cv;
-bool isDataReady = false;  //这里做的是起始信号
-int sharedData = 0;
-
-// 生产者
-void producer(const char* name) {
-    while( sharedData < 10){
-        std::this_thread::sleep_for(std::chrono::seconds(1)); // 模拟生产数据的耗时操作
-
-        std::lock_guard<std::mutex> lock(mtx);
-        sharedData++;
-        isDataReady = true;
-
-        std::cout << name << "producer data: " << sharedData << std::endl;
-
-        cv.notify_one(); // 通知消费者线程，数据已准备好
-    }
-    std::cout << "producer exit" << std::endl;
-}
-
-// 消费者
-void consumer() {
-    static int cnt = 0;
-    while( sharedData < 10 ){
-        if(cnt >= sharedData)
-        {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 模拟生产数据的耗时操作
-        }
-        else{
-            std::unique_lock<std::mutex> lock(mtx);
-        
-            cv.wait(lock, [] { return isDataReady; }); // 等待数据准备好的通知
-
-            std::cout << "Consumed data: " << sharedData << std::endl;
-
-            cnt = sharedData;
-        }
-    }
-    std::cout << "consumer exit" << std::endl;
-}
-
-// 创建
-void create_thread() {
-    std::thread t1(producer, "thread_");
-    std::thread t2(consumer);
-    t1.detach(); // 分离式
-    if (t2.joinable()) { // 判断线程是否可被合并或分离
-        t2.join();       // 等待线程结束
-    }
-    std::cout << "Shared data: " << sharedData << std::endl;
-}
 
 // 不带参数 做为线程函数
 void thread_function1() {
@@ -181,8 +127,26 @@ int thread_create_fun8() {
     return 0;
 }
 
-// 测试
-int main(int arg, char* argv[]) {
+
+/**
+ * 函数只会执行一次
+ * 多线程下也是只执行一次
+*/
+std::once_flag onceFlag;
+
+// 函数只会执行一次
+void initialize() {
+    std::cout << "Initialize function called once" << std::endl;
+}
+
+void thread_create_fun9(int idx) {
+    std::cout << "Hello from the process:" << idx << "\n";
+    std::call_once(onceFlag, initialize);
+    std::cout << "Hello from the process after:" << idx << "\n";
+}
+
+
+int main_test(int arg, char* argv[]) {
     thread_create_fun1();
     thread_create_fun2();
     thread_create_fun3();
@@ -191,5 +155,13 @@ int main(int arg, char* argv[]) {
     thread_create_fun6();
     thread_create_fun7();
     thread_create_fun8();
+    for(int i=0; i<10; ++i)
+        thread_create_fun9(i);
+    return 0;
+}   
+
+// 测试
+int main(int arg, char* argv[]) {
+    main_test(arg, argv);
     return 0;
 }
