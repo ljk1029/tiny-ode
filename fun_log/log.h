@@ -16,18 +16,23 @@
 namespace log_tool{
 // 日志路径
 constexpr const char* log_file{"./log.txt"};
-const unsigned int log_switch = 3U;
+const unsigned int log_switch{3U};
 enum class LogLevel : unsigned int { kDebug = 1, kInfo = 2, kWarn = 3, kError = 4};
 
 // 打印颜色
-const char buffer_red[7]    = {'\033', '[', '1', ';', '3', '1', 'm'}; // 红色
-const char buffer_yellow[7] = {'\033', '[', '1', ';', '3', '3', 'm'}; // 黄色
-const char buffer_end[4]    = {'\033', '[', '0', 'm'};
+/*
+const char buffer_red[8]    = {'\033', '[', '1', ';', '3', '1', 'm'}; // 红色
+const char buffer_yellow[8] = {'\033', '[', '1', ';', '3', '3', 'm'}; // 黄色
+const char buffer_end[5]    = {'\033', '[', '0', 'm'};
+*/
+// 打印颜色，注意数组大小要加一来包含空终止符 '\0'
+const char buffer_red[]    = "\033[1;31m"; // 红色
+const char buffer_yellow[] = "\033[1;33m"; // 黄色
+const char buffer_end[]    = "\033[0m";    // 重置颜色
 
 
 // 设置控制颜色
-int log_test()
-{
+int log_colour_set() {
     std::puts(buffer_yellow);
     std::puts("set console yellow");
     std::puts(buffer_end);
@@ -35,14 +40,12 @@ int log_test()
     std::puts(buffer_red);
     std::cout<< "set console red" << std::endl;
     std::puts(buffer_end);
-
     return 0;
 }
 
 // 多参数日志
 template<typename... Args>
-int log(int level, const Args&... args)
-{
+int log(int level, const Args&... args) {
     // 获取当前时间
     auto now = std::chrono::system_clock::now();
     std::time_t time_now = std::chrono::system_clock::to_time_t(now);
@@ -99,7 +102,6 @@ int log(int level, const Args&... args)
         file.close();
         // 关闭文件
     }
-
     return 0;
 }
     

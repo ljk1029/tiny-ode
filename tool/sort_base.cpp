@@ -1,7 +1,7 @@
-#ifndef _SORT_TOOL_H__
-#define _SORT_TOOL_H__
 #include <vector>
 #include <queue>
+#include <iostream>
+#include <algorithm>
 
 /**
 1. 冒泡排序（Bubble Sort）：适用于小规模的数据排序，实现简单但效率较低。
@@ -22,131 +22,7 @@
 */
 
 
-namespace sort_tool{
-
-using vector2 = std::vector<std::vector<int>>;
-
-bool DFSUtil(int x, int y, int n, int m, const std::vector<std::vector<int>>& array, std::vector<std::vector<int>>& judge, std::vector<std::pair<int, int>>& path) {
-    // 如果到达了最后一个点，记录点并返回成功
-    if (x == n - 1 && y == m - 1) {
-        judge[x][y] = 1;
-        if(array[x][y] == 1){
-            path.push_back({x, y}); // 添加终点到路径
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    // 超出范围或者是不可访问的点
-    if(x < 0 || x >= n || y < 0 || y >= m || array[x][y] == 0 || judge[x][y] == 1){
-        return false;
-    }
-
-    // 标记当前节点为路径的一部分
-    judge[x][y] = 1;
-    path.push_back({x, y}); // 添加当前点到路径
-
-    // 向右移动
-    if (DFSUtil(x + 1, y, n, m, array, judge, path)) return true;
-
-    // 向下移动
-    if (DFSUtil(x, y + 1, n, m, array, judge, path)) return true;
-
-    // 如果这条路线不成功，反标记[x][y]并从路径中移除
-    judge[x][y] = 0;
-    path.pop_back(); // 移除当前点
-
-    // 如果没有找到路径，返回失败
-    return false;
-}
-
-// 深度搜素，用于查找是否联通等
-bool DFS(std::vector<std::vector<int>> array)
-{
-    bool find_flag = false;
-    int n = array.size(), m;
-    if( n == 0 )
-        return false;
-    m = array[0].size();
-    if( m == 0 )
-        return false;
-    std::vector<std::vector<int>> judge(n, std::vector<int>(m, 0));
-    std::vector<std::pair<int, int>> path;
-    if(DFSUtil(0, 0, n, m, array, judge, path))
-    {
-        find_flag = true;
-        std::cout << "Path found:\n";
-        for (const auto& p : path)
-            std::cout << '(' << p.first << ',' << p.second << ") -> ";
-        std::cout << "END" << std::endl;
-    } else {
-        std::cout << "No path found" << std::endl;
-        for (const auto& p : path)
-            std::cout << '(' << p.first << ',' << p.second << ") -> ";
-    }
-
-    return find_flag;
-}
-
-// 广度搜素，用于查找最优解
-bool BFS(std::vector<std::vector<int>> array)
-{
-    bool find_flag = false;
-    int n = array.size();
-    if (n == 0) return false;
-    int m = array[0].size();
-    if (m == 0) return false;
-
-    std::vector<std::vector<int>> judge(n, std::vector<int>(m, 0));
-    std::queue<std::pair<int, int>> q;
-    std::vector<std::pair<int, int>> path;
-
-    // 添加起点进入队列
-    q.push({0, 0});
-    judge[0][0] = 1; // 标记起点已访问
-
-    // 方向数组，表示相邻的四个方向（上下左右）
-    int dirs[4][2] = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
-
-    while (!q.empty()) {
-        auto p = q.front(); q.pop();
-        int x = p.first, y = p.second;
-        path.push_back(p); // 将当前点加入路径
-
-        // 如果到达终点
-        if (x == n - 1 && y == m - 1) {
-            find_flag = true;
-            break;
-        }
-
-        // 探索相邻节点
-        for (auto& dir : dirs) {
-            int next_x = x + dir[0];
-            int next_y = y + dir[1];
-
-            // 检查新位置是否可访问并且未被访问过
-            if (next_x >= 0 && next_x < n && next_y >= 0 && next_y < m && array[next_x][next_y] == 1 && judge[next_x][next_y] == 0) {
-                q.push({next_x, next_y});
-                judge[next_x][next_y] = 1; // 标记为已访问
-            }
-        }
-    }
-
-    if(find_flag){
-        std::cout << "Path found:\n";
-        for (const auto& p : path)
-            std::cout << '(' << p.first << ',' << p.second << ") -> ";
-        std::cout << "END" << std::endl;
-    } 
-    else{
-        std::cout << "No path found" << std::endl;
-    }
-    // 找不到路径
-    path.clear();
-    return find_flag;
-}
-
+namespace sort_tool {
 /*
 1、冒泡:遍历 比较大的交换到后面，每次后面都是排好的（所有数）。
 2、插入:先排好前面，每次后面往比前面小交换，直到到前面比他小，前面是排好的（已排索引号前的数）。
@@ -163,8 +39,7 @@ bool BFS(std::vector<std::vector<int>> array)
 */
 
 // 1、冒泡排序
-void bubble_sort(int array[], int n)
-{
+void bubble_sort(int array[], int n) {
     int i, j, temp;
     for (i = 0; i < n - 1; i++){
         for (j = 0; j < n - 1 - i; j++)
@@ -180,8 +55,7 @@ void bubble_sort(int array[], int n)
 }
 
 // 2、插入排序
-void insert_sort(int array[], int n)
-{
+void insert_sort(int array[], int n) {
     int i, j, temp;
     for(i = 1; i < n; i++)
     {
@@ -195,8 +69,7 @@ void insert_sort(int array[], int n)
 }
 
 // 3、快速排序 
-void quick_sort(int array[], int low, int high)
-{
+void quick_sort(int array[], int low, int high) {
     if(low >= high){
         return;
     }
@@ -226,9 +99,8 @@ void quick_sort(int array[], int low, int high)
 }
 
 // 4、选择排序
-void select_sort(int array[], int n)
-{
-    int i,j, min, temp;
+void select_sort(int array[], int n) {
+    int i, j, min, temp;
     for(i = 0; i < n-1; i++)
     {
         min = i;//查找最小值
@@ -247,32 +119,96 @@ void select_sort(int array[], int n)
 }
 
 //  5、希尔排序
-void shell_sort(int array[],int n,int t)
-{
+void shell_sort(int array[],int n,int t) {
 
 }
 
 // 6、并归排序
-void merge_sort(int sourceArr[], int tempArr[], int startIndex, int endIndex)
-{
+void merge_sort(int sourceArr[], int tempArr[], int startIndex, int endIndex) {
 
 }
 
 // 7、堆排序
-void heap_sort(int array[], int n)
-{
+void heap_sort(int array[], int n) {
 
 }
 
 // 8、基排序
-void radix_sort(int array[], int n)
-{
+void radix_sort(int array[], int n) {
+
+}
 
 }
 
 
 
-
+// 排序测试 
+void sort_print(const int array[], int len) {
+    for(int i=0; i<len; i++)
+        std::cout << array[i] << ' ';
+    std::cout << std::endl;
 }
 
-#endif
+// test switch
+void test_sort_algorithm(int args) {
+    #define SORT_SIZE 10
+    const int number[SORT_SIZE] = {95, 45, 15, 78, 84, 51, 24, 12, 89, 21};
+    int sort1[SORT_SIZE]; 
+    std::copy(number, number+SORT_SIZE, sort1);
+
+    sort_print(sort1, SORT_SIZE);
+    switch (args)
+    {
+    case 1:
+        sort_tool::bubble_sort(sort1, SORT_SIZE);
+        break;
+    case 2:
+        sort_tool::insert_sort(sort1, SORT_SIZE);
+        break;
+    case 3:
+        sort_tool::quick_sort(sort1, 0, SORT_SIZE-1);
+        break;
+    case 4:
+        sort_tool::select_sort(sort1, SORT_SIZE);
+        break;
+    
+    default:
+        break;
+    }
+    sort_print(sort1, SORT_SIZE);
+}
+
+
+// 获取参数
+char *getCmdOption(char **begin, char **end, const std::string &option) {
+    char **itr = std::find(begin, end, option);
+    if (itr != end && ++itr != end) {
+        return *itr;
+    }
+    return nullptr;
+}
+
+bool cmdOptionExists(char **begin, char **end, const std::string &option) {
+    return std::find(begin, end, option) != end;
+}
+
+#define RUN_SORT_3(task_number)  \
+    if (cases_run == nullptr || (cases_string.find("f" # task_number) != std::string::npos && cases_string.size() ==3)) { \
+        std::cout << "sort" # task_number << std::endl;\
+        test_sort_algorithm(task_number); \
+    }
+
+// 测试函数入口
+int main(int argc, char *argv[]) {
+    char *cases_run = getCmdOption(argv, argv + argc, "-case");
+    std::string cases_string;
+    if (cases_run) {
+        cases_string = cases_run;
+    }
+
+    RUN_SORT_3(1)
+    RUN_SORT_3(2)
+    RUN_SORT_3(3)
+    RUN_SORT_3(4)
+    return 0;
+}

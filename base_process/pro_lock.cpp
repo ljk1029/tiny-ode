@@ -3,8 +3,11 @@
 #include <mutex>
 #include <condition_variable>
 /**
- * 注意wait执行是会释放所有锁，直到返回值为true才重新获取锁
- * 
+ * 1、注意wait执行是会释放所有锁，直到返回值为true才重新获取锁
+ * 2、std::lock_guard<std::mutex> lock(mtx); 会获取锁保护作用区，
+ *    但特例是和wait一起使用时，不管锁是释放还是使用状态，都会执行到wait
+ *    (1) 锁被其他线程占用，返回false(一般全局变量，用来做状态)，wait会阻塞，等待notify_all通知后或者使用wait_for超时，再次返回true，执行后续
+ *    (2) 锁被释放，返回true，执行后续
 */
 
 

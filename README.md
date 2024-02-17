@@ -1,22 +1,20 @@
-# C++
+# C++说明
   C++ study
   Qt study
 
-## doc
+## 1、doc
   文档说明
 
-## qt
+## 2、qt
   qt部分
 
 
-# code
-## advanced
+
+# code说明
+## 1、advanced
   C++ 一些使用 
 ### base
   基础语法使用
-
-### algorithm
-  算法、例题
 
 ### type
   template模板使用
@@ -24,7 +22,15 @@
 ### stl
   stl 使用
 
-## tool
+### lib
+  lib 使用
+
+
+## 2、algorithm
+  算法、例题
+
+
+## 3、tool
 ### 数据结构
 
   树的旋转说明
