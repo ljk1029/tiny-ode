@@ -1,0 +1,3 @@
+
+
+void myprintf(int num);
