@@ -5,10 +5,8 @@
 using namespace data_tool;
 using namespace data_tool::list;
 
-
-//gtest测试框架
+// gtest测试框架
 #include <gtest/gtest.h>
-
 
 // 1、接口测试
 TEST(CustomLinkedListTest, EmptyList) {
@@ -42,8 +40,8 @@ TEST(CustomLinkedListTest, Find) {
     EXPECT_TRUE(list.Add(key1, data1));
     EXPECT_TRUE(list.Add(key2, data2));
 
-    std::string  foundData1;
-    std::string  foundData2;
+    std::string foundData1;
+    std::string foundData2;
     EXPECT_TRUE(list.Find(key1, foundData1));
     EXPECT_TRUE(list.Find(key2, foundData2));
     EXPECT_EQ(foundData1, data1);
@@ -70,7 +68,7 @@ TEST(CustomLinkedListTest, MultipleThreads) {
     // list.print();
 
     // 等待所有线程完成
-    for (auto& thread : threads) {
+    for (auto &thread : threads) {
         thread.join();
     }
 
@@ -88,7 +86,7 @@ TEST(CustomLinkedListTest, MultipleThreads) {
     }
 
     // 等待所有线程完成
-    for (auto& thread : threads) {
+    for (auto &thread : threads) {
         thread.join();
     }
 
@@ -97,8 +95,7 @@ TEST(CustomLinkedListTest, MultipleThreads) {
 }
 
 // 内容测试
-TEST(CustomLinkedListTest, content) 
-{
+TEST(CustomLinkedListTest, content) {
     CustomLinkedList<std::string> list(10, true);
     const int num_adds = 12;
     for (int i = 0; i < num_adds; i++) {
@@ -123,20 +120,17 @@ TEST(CustomLinkedListTest, content)
     EXPECT_EQ(list.GetSize(), 10);
 
     for (int i = 0; i < num_adds; i++) {
-        if(i%2){
+        if (i % 2) {
             list.Delete(i);
         }
         std::string data = "String_" + std::to_string(i);
-        list.Add(i+8, data);
+        list.Add(i + 8, data);
     }
     list.print("change");
 }
 
-
-
 // Add more test cases as needed
-int main(int argc, char** argv) 
-{
+int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }

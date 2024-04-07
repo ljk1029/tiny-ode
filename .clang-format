@@ -1,0 +1,8 @@
+
+BasedOnStyle: llvm
+IndentWidth:   4
+TabWidth:      4
+UseTab:        Never
+
+# 对于访问修饰符的偏移量
+AccessModifierOffset: -4

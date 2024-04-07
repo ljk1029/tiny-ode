@@ -13,21 +13,17 @@ using namespace std;
 // 链表
 struct ListNode {
     int val;
-    ListNode* next;
-    ListNode(int value, ListNode* ptr):val(value), next(ptr){
-    }
+    ListNode *next;
+    ListNode(int value, ListNode *ptr) : val(value), next(ptr) {}
 };
 
 // 打印声明
-void listPrint(ListNode* list);
-
+void listPrint(ListNode *list);
 
 // 2节点交换
-ListNode* swapListFun(ListNode* list, int n)
-{
-    ListNode* head = list;
-    if(head == NULL || head->next == NULL)
-    {
+ListNode *swapListFun(ListNode *list, int n) {
+    ListNode *head = list;
+    if (head == NULL || head->next == NULL) {
         return head;
     }
 
@@ -36,22 +32,19 @@ ListNode* swapListFun(ListNode* list, int n)
     list->next = swapListFun(head->next, n);
     head->next = list;
 #elif 1
-    
-    ListNode* next = list, *prev = NULL;
-    while(next)
-    {
-        if(next->next == NULL)
-        {
+
+    ListNode *next = list, *prev = NULL;
+    while (next) {
+        if (next->next == NULL) {
             break;
         }
         printf("%p %p\n", next, next->next);
-        ListNode* last   = next->next->next; 
-        ListNode* second = next->next;
+        ListNode *last = next->next->next;
+        ListNode *second = next->next;
         second->next = next;
-        next->next   = last;
+        next->next = last;
 
-        if(prev)
-        {
+        if (prev) {
             prev->next = second;
         }
         prev = next;
@@ -59,42 +52,38 @@ ListNode* swapListFun(ListNode* list, int n)
     }
 
 #endif
-    
+
     return head;
 }
 
-ListNode* swapListFun_n(ListNode* list, int n)
-{
-    ListNode* head = list;
-    if(head == NULL || head->next == NULL)
-    {
+ListNode *swapListFun_n(ListNode *list, int n) {
+    ListNode *head = list;
+    if (head == NULL || head->next == NULL) {
         return head;
     }
 
     head = head->next;
     list->next = swapListFun(head->next, n);
     head->next = list;
-    
+
     return head;
 }
 
 // 链表打印
-void listPrint(ListNode* list)
-{
-    std::cout<<std::endl;
-    while(list) 
-    {
-        std::cout << list->val << "addr:" << list <<std::endl;
+void listPrint(ListNode *list) {
+    std::cout << std::endl;
+    while (list) {
+        std::cout << list->val << "addr:" << list << std::endl;
         list = list->next;
     }
 }
 
-int main(int argc, char* argv[]) {
-    //int a;
-    //cin >> a;
-  
-    ListNode* head = nullptr;
-    for(int i=0; i<7; i++){
+int main(int argc, char *argv[]) {
+    // int a;
+    // cin >> a;
+
+    ListNode *head = nullptr;
+    for (int i = 0; i < 7; i++) {
         head = new ListNode(i, head);
     }
 

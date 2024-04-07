@@ -4,11 +4,9 @@
 #include <vector>
 
 // 命名空间
-namespace stl_vector 
-{
+namespace stl_vector {
 // 打印
-void print(std::vector<int> numbers, std::string title)
-{
+void print(std::vector<int> numbers, std::string title) {
     std::cout << "(" << title << ")" << std::endl;
     for (int num : numbers) {
         std::cout << num << " ";
@@ -17,21 +15,15 @@ void print(std::vector<int> numbers, std::string title)
 }
 
 // 重载打印
-void print(std::vector<int> numbers, std::string title, char bracket)
-{
-    if(bracket == '(' || bracket == ')')
-    {
+void print(std::vector<int> numbers, std::string title, char bracket) {
+    if (bracket == '(' || bracket == ')') {
         std::cout << "(" << title << ")" << std::endl;
-    }
-    else if(bracket == '[' || bracket == ']')
-    {
+    } else if (bracket == '[' || bracket == ']') {
         std::cout << "[" << title << "]" << std::endl;
-    }
-    else
-    {
+    } else {
         std::cout << title << std::endl;
     }
-    
+
     for (int num : numbers) {
         std::cout << num << " ";
     }
@@ -39,8 +31,7 @@ void print(std::vector<int> numbers, std::string title, char bracket)
 }
 
 // verctor 添加删除
-int verctor_make()
-{
+int verctor_make() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     // 添加
@@ -55,8 +46,7 @@ int verctor_make()
 }
 
 // vector 访问
-int verctor_at() 
-{
+int verctor_at() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     // 获取 vector 的大小
@@ -65,13 +55,12 @@ int verctor_at()
     // 访问 vector 中的元素
     std::cout << "element: " << numbers[0] << std::endl;
     std::cout << "element: " << numbers.at(1) << std::endl;
-    std::cout << "element: "  << numbers.back() << std::endl;
+    std::cout << "element: " << numbers.back() << std::endl;
     return 0;
 }
 
 // 删除
-int verctor_erase() 
-{
+int verctor_erase() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     // 删除指定位置的元素,第2个
@@ -79,7 +68,7 @@ int verctor_erase()
     print(numbers, "erase test", '(');
 
     // 插入 在第3个元素前面插入10;
-    numbers.insert(numbers.begin()+2, 10);
+    numbers.insert(numbers.begin() + 2, 10);
     print(numbers, "insert test", '(');
 
     // 清空
@@ -88,27 +77,25 @@ int verctor_erase()
     std::cout << "size: " << numbers.size() << std::endl;
 
     // 检查是否为空
-    if (numbers.empty()) 
-    {
+    if (numbers.empty()) {
         std::cout << "Vector is empty." << std::endl;
     }
     return 0;
 }
 
 // 遍历
-int verctor_iterator() 
-{
+int verctor_iterator() {
     std::vector<int> numbers = {1, 2, 3, 4, 5};
 
     // 使用迭代器遍历 vector
     std::cout << "Vector iterator: ";
-    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) 
-    {
+    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end();
+         ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
     return 0;
 }
 
-}
-#endif 
+} // namespace stl_vector
+#endif

@@ -1,21 +1,18 @@
 #include <iostream>
-#include <thread>
 #include <mutex>
+#include <thread>
 // unix
 #include <unistd.h>
-
 
 // 锁
 std::mutex mtx;
 
 // 不带参数 做为线程函数
-void thread_function1() {
-    std::cout << "Hello from the thread!\n";
-}
+void thread_function1() { std::cout << "Hello from the thread!\n"; }
 
 // 带参数 做为线程函数
-void thread_function(const char* message) {
-    //std::this_thread::sleep_for(std::chrono::seconds(1));
+void thread_function(const char *message) {
+    // std::this_thread::sleep_for(std::chrono::seconds(1));
     std::cout << "Hello from the thread:" << message << "\n";
 }
 
@@ -40,16 +37,14 @@ int thread_create_fun1() {
 
 // 创建线程并使用lambda表达式
 int thread_create_fun2() {
-    std::thread t([]() {
-        std::cout << "Hello from the lambda thread!\n";
-    });
+    std::thread t([]() { std::cout << "Hello from the lambda thread!\n"; });
     t.join();
     return 0;
 }
 
 // 带一个参数
 int thread_create_fun3() {
-    const char* message = "with parameters!";
+    const char *message = "with parameters!";
     std::thread t(thread_function, message);
     t.join();
     return 0;
@@ -57,7 +52,7 @@ int thread_create_fun3() {
 
 // 分离式detach
 int thread_create_fun4() {
-    const char* message = "with detach!";
+    const char *message = "with detach!";
     std::thread t(thread_function, message);
     t.detach();
     std::cout << "Main thread is done with detach!\n";
@@ -80,11 +75,12 @@ int thread_create_fun5() {
 
 // 获取ID
 int thread_create_fun6() {
-    std::cout << "Process ID:" << getpid() << ", Thread ID: " << std::this_thread::get_id() << std::endl;
+    std::cout << "Process ID:" << getpid()
+              << ", Thread ID: " << std::this_thread::get_id() << std::endl;
     std::thread t([]() {
         std::thread::id id = std::this_thread::get_id();
         std::cout << "Thread ID: " << id << std::endl;
-        //std::this_thread::sleep_for(std::chrono::seconds(10));
+        // std::this_thread::sleep_for(std::chrono::seconds(10));
     });
     t.join();
     return 0;
@@ -104,7 +100,7 @@ int thread_create_fun7() {
     for (int i = 0; i < n; ++i) {
         threads[i] = std::thread(thread_function2, i + 1);
     }
-    for (auto& t : threads) {
+    for (auto &t : threads) {
         t.join();
     }
     return 0;
@@ -112,7 +108,7 @@ int thread_create_fun7() {
 
 // 线程转移
 int thread_create_fun8() {
-    const char* message = "with move!";
+    const char *message = "with move!";
 #if 1
     std::thread t1(thread_function, message);
     std::thread t2 = std::move(t1);
@@ -120,18 +116,19 @@ int thread_create_fun8() {
 #else
     std::thread t1(thread_function, "move 1");
     std::thread t2(thread_function, "move 2");
-    t2 = std::move(t1);//t1已关联一个线程，再赋值会调用std::terminate()终止程序 线程转移关关联
+    t2 =
+        std::move(t1); // t1已关联一个线程，再赋值会调用std::terminate()终止程序
+                       // 线程转移关关联
     t1.join();
     t2.join();
 #endif
     return 0;
 }
 
-
 /**
  * 函数只会执行一次
  * 多线程下也是只执行一次
-*/
+ */
 std::once_flag onceFlag;
 
 // 函数只会执行一次
@@ -145,8 +142,7 @@ void thread_create_fun9(int idx) {
     std::cout << "Hello from the process after:" << idx << "\n";
 }
 
-
-int main_test(int arg, char* argv[]) {
+int main_test(int arg, char *argv[]) {
     thread_create_fun1();
     thread_create_fun2();
     thread_create_fun3();
@@ -155,13 +151,13 @@ int main_test(int arg, char* argv[]) {
     thread_create_fun6();
     thread_create_fun7();
     thread_create_fun8();
-    for(int i=0; i<10; ++i)
+    for (int i = 0; i < 10; ++i)
         thread_create_fun9(i);
     return 0;
-}   
+}
 
 // 测试
-int main(int arg, char* argv[]) {
+int main(int arg, char *argv[]) {
     main_test(arg, argv);
     return 0;
 }

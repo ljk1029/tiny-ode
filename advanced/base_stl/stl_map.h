@@ -1,14 +1,12 @@
 #ifndef _STL_MAP_H__
 #define _STL_MAP_H__
 #include <iostream>
-#include <string>
 #include <map>
+#include <string>
 
-
-namespace stl_map{
+namespace stl_map {
 // 初始化
-int map_make() 
-{
+int map_make() {
     // 创建一个字符串到整数的映射
     std::map<std::string, int> studentScores;
 
@@ -26,8 +24,7 @@ int map_make()
 }
 
 // 遍历
-int map_iterator() 
-{
+int map_iterator() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -35,16 +32,15 @@ int map_iterator()
 
     // 使用迭代器遍历 map
     std::cout << "iterator map:" << std::endl;
-    for (std::map<std::string, int>::iterator it = studentScores.begin(); it != studentScores.end(); ++it) 
-    {
+    for (std::map<std::string, int>::iterator it = studentScores.begin();
+         it != studentScores.end(); ++it) {
         std::cout << it->first << ": " << it->second << std::endl;
     }
     return 0;
 }
 
 // 查找
-int map_find() 
-{
+int map_find() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -52,20 +48,16 @@ int map_find()
 
     // 查找元素
     std::map<std::string, int>::iterator it = studentScores.find("Bob");
-    if (it != studentScores.end()) 
-    {
+    if (it != studentScores.end()) {
         std::cout << "find map: " << it->second << std::endl;
-    } 
-    else 
-    {
+    } else {
         std::cout << "Bob not found." << std::endl;
     }
     return 0;
 }
 
 // 删除
-int map_erase() 
-{
+int map_erase() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -76,13 +68,12 @@ int map_erase()
 
     // 遍历 map 并输出剩余元素
     std::cout << "erase:" << std::endl;
-    for (const auto& pair : studentScores)
-    {
+    for (const auto &pair : studentScores) {
         std::cout << pair.first << ": " << pair.second << std::endl;
     }
     return 0;
 }
 
-}
+} // namespace stl_map
 
-#endif 
+#endif

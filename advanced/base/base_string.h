@@ -1,16 +1,15 @@
 #ifndef _STL_STRING_H__
 #define _STL_STRING_H__
 
+#include <array>
 #include <iostream>
 #include <string>
-#include <array>
 
-namespace my_string{
+namespace my_string {
 // 字符串 属于stl，自动释放
-int stl_string()
-{
+int stl_string() {
     // 初始化
-    std::string str1="Hello, World!";
+    std::string str1 = "Hello, World!";
     std::string str2("C++ String");
     std::string str3(5, 'A'); // 创建一个包含5个'A'字符的字符串
     std::cout << "初始化:" << std::endl;
@@ -30,7 +29,8 @@ int stl_string()
     std::cout << length << std::endl;
 
     // 字符串比较
-    std::cout << "字符比较:str1[0]" << str1[0] << "str2[0]" << str2[0] << std::endl;
+    std::cout << "字符比较:str1[0]" << str1[0] << "str2[0]" << str2[0]
+              << std::endl;
     if (str1 == str2) {
         std::cout << "str1 == str2" << std::endl;
     } else if (str1 < str2) {
@@ -53,8 +53,7 @@ int stl_string()
 }
 
 // 字符串
-int stl_strings()
-{
+int stl_strings() {
     // 字符串分割
     std::string text = "apple,banana,cherry";
     size_t pos = 0;
@@ -82,26 +81,24 @@ int stl_strings()
 }
 
 // 数组测试
-int stl_array()
-{
+int stl_array() {
     // 初始化
     std::array<int, 5> my_array1;
-    std::array<int, 5> my_array2 = {0,1,2};
+    std::array<int, 5> my_array2 = {0, 1, 2};
 
     // 大小
-    for(int i=0; i<my_array1.size(); i++)
-    {
-        std::cout << "idx:" << my_array1[i] << "  size:"<< my_array1.size() << std::endl;
+    for (int i = 0; i < my_array1.size(); i++) {
+        std::cout << "idx:" << my_array1[i] << "  size:" << my_array1.size()
+                  << std::endl;
     }
 
     // 或使用范围-based for 循环
-    for (const auto& element : my_array2)
-    {
+    for (const auto &element : my_array2) {
         std::cout << element << std::endl;
     }
     return 0;
-}  
-
 }
 
-#endif 
+} // namespace my_string
+
+#endif

@@ -1,21 +1,19 @@
 #include <iostream>
-#include <thread>
 #include <mutex>
+#include <thread>
 #include <utility>
 
 /**
  * 1、平衡二叉树
-*/
-namespace tree
-{
+ */
+namespace tree {
 // 平衡二叉树节点类模板
-template <typename T>
-class AVLNode {
+template <typename T> class AVLNode {
 public:
-    T data;                     // 节点值
-    int height;                 // 节点高度
-    AVLNode<T>* left;           // 左子节点
-    AVLNode<T>* right;          // 右子节点
+    T data;            // 节点值
+    int height;        // 节点高度
+    AVLNode<T> *left;  // 左子节点
+    AVLNode<T> *right; // 右子节点
 
     // 构造函数
     AVLNode(T value) {
@@ -27,32 +25,29 @@ public:
 };
 
 // 平衡二叉树操作类模板
-template <typename T>
-class AVLTree {
+template <typename T> class AVLTree {
 public:
-    AVLNode<T>* root;
+    AVLNode<T> *root;
 
     // 构造函数
-    AVLTree() {
-        root = nullptr;
-    }
+    AVLTree() { root = nullptr; }
 
     // 计算节点高度
-    int getHeight(AVLNode<T>* node) {
+    int getHeight(AVLNode<T> *node) {
         if (node == nullptr)
             return 0;
         return node->height;
     }
 
     // 计算节点平衡因子
-    int getBalanceFactor(AVLNode<T>* node) {
+    int getBalanceFactor(AVLNode<T> *node) {
         if (node == nullptr)
             return 0;
         return getHeight(node->left) - getHeight(node->right);
     }
 
     // 更新节点高度
-    void updateHeight(AVLNode<T>* node) {
+    void updateHeight(AVLNode<T> *node) {
         if (node == nullptr)
             return;
         int leftHeight = getHeight(node->left);
@@ -61,8 +56,8 @@ public:
     }
 
     // 右旋操作
-    AVLNode<T>* rightRotate(AVLNode<T>* node) {
-        AVLNode<T>* leftChild = node->left;
+    AVLNode<T> *rightRotate(AVLNode<T> *node) {
+        AVLNode<T> *leftChild = node->left;
         node->left = leftChild->right;
         leftChild->right = node;
         updateHeight(node);
@@ -71,8 +66,8 @@ public:
     }
 
     // 左旋操作
-    AVLNode<T>* leftRotate(AVLNode<T>* node) {
-        AVLNode<T>* rightChild = node->right;
+    AVLNode<T> *leftRotate(AVLNode<T> *node) {
+        AVLNode<T> *rightChild = node->right;
         node->right = rightChild->left;
         rightChild->left = node;
         updateHeight(node);
@@ -81,7 +76,7 @@ public:
     }
 
     // 插入节点
-    AVLNode<T>* insertNode(AVLNode<T>* node, T value) {
+    AVLNode<T> *insertNode(AVLNode<T> *node, T value) {
         if (node == nullptr)
             return new AVLNode<T>(value);
 
@@ -101,7 +96,7 @@ public:
     }
 
     // 中序遍历平衡二叉树
-    void inorderTraversal(AVLNode<T>* node) {
+    void inorderTraversal(AVLNode<T> *node) {
         if (node == nullptr)
             return;
 
@@ -111,7 +106,7 @@ public:
     }
 
     // 寻找最小节点
-    AVLNode<T>* findMinNode(AVLNode<T>* node) {
+    AVLNode<T> *findMinNode(AVLNode<T> *node) {
         if (node == nullptr)
             return nullptr;
         if (node->left == nullptr)
@@ -120,14 +115,14 @@ public:
     }
 
     // 删除节点
-    AVLNode<T>* deleteNode(AVLNode<T>* node, T value) {
+    AVLNode<T> *deleteNode(AVLNode<T> *node, T value) {
         if (node == nullptr)
             return nullptr;
 
         if (value < node->data) {
             node->left = deleteNode(node->left, value);
             updateHeight(node);
-            
+
             node = rightBalance(node);
         } else if (value > node->data) {
             node->right = deleteNode(node->right, value);
@@ -141,17 +136,17 @@ public:
                 return nullptr;
             } else if (node->left == nullptr) {
                 // 只有右子节点，用右子节点替换被删除节点
-                AVLNode<T>* rightChild = node->right;
+                AVLNode<T> *rightChild = node->right;
                 delete node;
                 return rightChild;
             } else if (node->right == nullptr) {
                 // 只有左子节点，用左子节点替换被删除节点
-                AVLNode<T>* leftChild = node->left;
+                AVLNode<T> *leftChild = node->left;
                 delete node;
                 return leftChild;
             } else {
                 // 有两个子节点，找到右子树中最小节点，用最小节点的值替换被删除节点的值，并删除最小节点
-                AVLNode<T>* minNode = findMinNode(node->right);
+                AVLNode<T> *minNode = findMinNode(node->right);
                 node->data = minNode->data;
                 node->right = deleteNode(node->right, minNode->data);
                 updateHeight(node);
@@ -166,7 +161,7 @@ public:
 
 private:
     // 右平衡
-    AVLNode<T>* rightBalance(AVLNode<T>* node) {
+    AVLNode<T> *rightBalance(AVLNode<T> *node) {
         int balanceFactor = getBalanceFactor(node);
         if (balanceFactor == -2) {
             if (getBalanceFactor(node->right) == -1) {
@@ -182,7 +177,7 @@ private:
     }
 
     // 左平衡
-    AVLNode<T>* leftBalance(AVLNode<T>* node) {
+    AVLNode<T> *leftBalance(AVLNode<T> *node) {
         int balanceFactor = getBalanceFactor(node);
         if (balanceFactor == 2) {
             if (getBalanceFactor(node->left) == 1) {
@@ -198,13 +193,12 @@ private:
     }
 };
 
-} 
-
+} // namespace tree
 
 // 树测试
 void test_tree_insrt() {
     tree::AVLTree<int> avlTree;
-    
+
     // 插入节点
     avlTree.root = avlTree.insertNode(avlTree.root, 5);
     avlTree.root = avlTree.insertNode(avlTree.root, 3);
@@ -213,7 +207,7 @@ void test_tree_insrt() {
     avlTree.root = avlTree.insertNode(avlTree.root, 4);
     avlTree.root = avlTree.insertNode(avlTree.root, 6);
     avlTree.root = avlTree.insertNode(avlTree.root, 8);
-    
+
     // 中序遍历
     avlTree.inorderTraversal(avlTree.root);
     std::cout << std::endl;
@@ -221,14 +215,14 @@ void test_tree_insrt() {
 
 void test_tree_delete() {
     tree::AVLTree<std::string> avlTree;
-   
+
     // 插入节点
     avlTree.root = avlTree.insertNode(avlTree.root, "banana");
     avlTree.root = avlTree.insertNode(avlTree.root, "apple");
     avlTree.root = avlTree.insertNode(avlTree.root, "cherry");
     avlTree.root = avlTree.insertNode(avlTree.root, "grape");
     avlTree.root = avlTree.insertNode(avlTree.root, "fig");
-    
+
     // 中序遍历
     avlTree.inorderTraversal(avlTree.root);
     std::cout << std::endl;
@@ -240,7 +234,7 @@ void test_tree_delete() {
     std::cout << std::endl;
 
     // 删除节点
-    //avlTree.root = avlTree.deleteNode(avlTree.root, "apple");
+    // avlTree.root = avlTree.deleteNode(avlTree.root, "apple");
     avlTree.root = avlTree.deleteNode(avlTree.root, "fig");
 
     // 中序遍历

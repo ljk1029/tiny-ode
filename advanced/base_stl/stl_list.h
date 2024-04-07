@@ -1,13 +1,12 @@
 #ifndef _STL_LIST_H__
 #define _STL_LIST_H__
+#include <algorithm>
 #include <iostream>
 #include <list>
-#include <algorithm>
 
-namespace stl_list{
+namespace stl_list {
 // 创建
-int list_make() 
-{
+int list_make() {
     // 创建一个整数链表并初始化
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
@@ -17,8 +16,7 @@ int list_make()
 
     // 访问链表中的元素
     std::cout << "make list: ";
-    for (int num : numbers) 
-    {
+    for (int num : numbers) {
         std::cout << num << " ";
     }
     std::cout << std::endl;
@@ -26,8 +24,7 @@ int list_make()
 }
 
 // 遍历
-int list_iterator() 
-{
+int list_iterator() {
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
     // 获取链表的大小
@@ -37,10 +34,10 @@ int list_iterator()
     std::cout << "element: " << numbers.front() << std::endl;
     std::cout << "element: " << numbers.back() << std::endl;
 
-     // 使用迭代器遍历 list
+    // 使用迭代器遍历 list
     std::cout << "iterator: ";
-    for (std::list<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) 
-    {
+    for (std::list<int>::iterator it = numbers.begin(); it != numbers.end();
+         ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
@@ -48,8 +45,7 @@ int list_iterator()
 }
 
 // 删除
-int list_remove() 
-{
+int list_remove() {
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
     // 删除第一个元素
@@ -70,7 +66,7 @@ int list_remove()
 
     //删除2
     std::list<int>::iterator pos = std::find(numbers.begin(), numbers.end(), 2);
-	numbers.erase(pos); 
+    numbers.erase(pos);
 
     std::cout << "erase: ";
     for (int num : numbers) {
@@ -78,7 +74,7 @@ int list_remove()
     }
     std::cout << std::endl;
 
-     // 清空 list
+    // 清空 list
     numbers.clear();
 
     // 检查 list 是否为空
@@ -88,6 +84,6 @@ int list_remove()
     return 0;
 }
 
-}
+} // namespace stl_list
 
-#endif 
+#endif

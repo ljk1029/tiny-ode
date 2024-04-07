@@ -1,9 +1,8 @@
+#include "log.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include "log.h"
-
 
 // 日志测试
 void test_log() {

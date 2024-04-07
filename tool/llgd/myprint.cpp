@@ -1,5 +1,2 @@
 #include <iostream>
-void myprintf(int num)
-{
-    std::cout << "num: " << num << std::endl;
-}
+void myprintf(int num) { std::cout << "num: " << num << std::endl; }
