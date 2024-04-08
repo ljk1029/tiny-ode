@@ -1,6 +1,9 @@
 #include <cxxabi.h>
 #include <iostream>
 
+/**
+ * 类继承实例测试
+ * */ 
 template <typename T> class B {
 public:
     void print() {
