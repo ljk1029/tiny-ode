@@ -8,7 +8,13 @@ TabWidth:      4
 UseTab:        Never
 
 # 对于访问修饰符的偏移量
-AccessModifierOffset: -4"
+AccessModifierOffset: -4
+
+# 设置了每行最大字符个数
+ColumnLimit: 120
+
+# 不对头文件进行自动排序
+SortIncludes: false"
 
 # 将样式写入 .clang-format 文件
 echo "$CLANG_FORMAT_STYLE" > .clang-format
