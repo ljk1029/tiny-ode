@@ -3,8 +3,9 @@
 #include <iostream>
 #include <set>
 
+namespace my_base {
 namespace stl_set {
-int set_all() {
+int setAll() {
     std::set<int> numbers = {3, 1, 4, 1, 5, 9, 2, 6, 5};
 
     // 获取集合的大小
@@ -39,5 +40,6 @@ int set_all() {
 }
 
 } // namespace stl_set
+}
 
 #endif

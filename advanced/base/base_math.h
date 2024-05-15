@@ -5,11 +5,11 @@
 
 namespace my_math {
 // 排序
-int math_sqrt() { return 0; }
+int mathSqrt() { return 0; }
 
-int math_pow() { return 0; }
+int mathPow() { return 0; }
 
-int math_rand() { return 0; }
+int mathRand() { return 0; }
 
 } // namespace my_math
 

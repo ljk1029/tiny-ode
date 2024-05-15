@@ -4,9 +4,10 @@
 #include <iostream>
 #include <list>
 
+namespace my_base {
 namespace stl_list {
 // 创建
-int list_make() {
+int listMake() {
     // 创建一个整数链表并初始化
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
@@ -24,7 +25,7 @@ int list_make() {
 }
 
 // 遍历
-int list_iterator() {
+int listIterator() {
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
     // 获取链表的大小
@@ -45,7 +46,7 @@ int list_iterator() {
 }
 
 // 删除
-int list_remove() {
+int listRemove() {
     std::list<int> numbers = {1, 2, 3, 4, 5};
 
     // 删除第一个元素
@@ -85,5 +86,6 @@ int list_remove() {
 }
 
 } // namespace stl_list
+}
 
 #endif

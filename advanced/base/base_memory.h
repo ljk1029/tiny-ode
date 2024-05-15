@@ -17,14 +17,17 @@
 #include <iostream>
 #include <memory>
 
+namespace my_base {
 namespace my_mem {
+
 // 开辟单维数组
-int memory_new() {
+int memoryNew() {
     int *p1 = new int;
     int *p2 = new int(2);  // 初始化2
     int *p3 = new int[10]; // 开辟10个int
-    std::cout << "new int:" << *p1 << std::endl;
-    std::cout << "new int(2):" << *p2 << std::endl;
+    std::cout << "new int:"     << *p1 << std::endl;
+    std::cout << "new int(2):"  << *p2 << std::endl;
+    std::cout << "new int[10]:" << *p3 << std::endl;
     delete p1;
     delete p2;
     delete[] p3;
@@ -32,59 +35,59 @@ int memory_new() {
 }
 
 // 开辟多维数组
-int memory_news() {
+int memoryNews() {
     int n = 3;
-    // 创建一个二维整数数组
     int *arr = new int[n]; // 创建指向 int* 的指针数组
+
     std::cout << "int[3]:";
     for (int i = 0; i < n; i++)
         std::cout << arr[i] << " ";
     std::cout << std::endl;
-    delete[] arr; // 释放指针数组
+    
+    delete[] arr; 
     return 0;
 }
 
 // 智能指针
-int smart_ptr() {
+int smartPtr() {
     // 使用 std::shared_ptr
-    std::shared_ptr<int> sharedPtr1 = std::make_shared<int>(42);
-    std::shared_ptr<int> sharedPtr2 = sharedPtr1; // 共享所有权
+    std::shared_ptr<int> shared_ptr1 = std::make_shared<int>(42);
+    std::shared_ptr<int> shared_ptr2 = shared_ptr1; // 共享所有权
 
-    std::cout << "shared_ptr:" << *sharedPtr1 << std::endl;
-    std::cout << "shared_ptr:" << *sharedPtr2 << std::endl;
+    std::cout << "shared_ptr:" << *shared_ptr1 << std::endl;
+    std::cout << "shared_ptr:" << *shared_ptr2 << std::endl;
 
     // 使用 std::unique_ptr
-    std::unique_ptr<int> uniquePtr = std::make_unique<int>(99);
-    // std::unique_ptr<int> uniquePtr2 = uniquePtr; //
+    std::unique_ptr<int> unique_ptr = std::make_unique<int>(99);
+    // std::unique_ptr<int> unique_ptr2 = unique_ptr; //
     // 试图复制会引发编译错误，因为它是独占所有权的
 
-    std::cout << "unique_ptr:" << *uniquePtr << std::endl;
+    std::cout << "unique_ptr:" << *unique_ptr << std::endl;
 
     // 在作用域结束时，智能指针会自动释放资源，不需要手动调用 delete
     return 0;
 }
 
 // 多维智能指针
-int smart_ptrs() {
+int smartPtrs() {
     const size_t n = 10;
-
-    // 创建一个 shared_ptr 来管理 int 的数组
-    std::shared_ptr<int> sharedPtr1(new int[n], std::default_delete<int[]>());
+    std::shared_ptr<int[]> shared_ptr1(new int[n]);
 
     // 初始化数组
     for (size_t i = 0; i < n; ++i) {
-        sharedPtr1.get()[i] =
-            static_cast<int>(i); // 或者 *(sharedPtr1.get() + i)
+        shared_ptr1.get()[i] = static_cast<int>(i); // 或者 *(shared_ptr1.get() + i)
     }
 
     // 打印测试
     for (size_t i = 0; i < n; ++i) {
-        std::cout << sharedPtr1.get()[i] << " ";
+        std::cout << shared_ptr1[i] << " ";
+        std::cout << shared_ptr1.get()[i] << " ";
     }
     std::cout << std::endl; // Should
     return 0;
 }
 
 } // namespace my_mem
+} // namespace my_base
 
 #endif

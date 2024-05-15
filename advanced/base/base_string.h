@@ -5,9 +5,11 @@
 #include <iostream>
 #include <string>
 
+namespace my_base {
 namespace my_string {
+    
 // 字符串 属于stl，自动释放
-int stl_string() {
+int stlString() {
     // 初始化
     std::string str1 = "Hello, World!";
     std::string str2("C++ String");
@@ -53,7 +55,7 @@ int stl_string() {
 }
 
 // 字符串
-int stl_strings() {
+int stlStrings() {
     // 字符串分割
     std::string text = "apple,banana,cherry";
     size_t pos = 0;
@@ -81,7 +83,7 @@ int stl_strings() {
 }
 
 // 数组测试
-int stl_array() {
+int stlArray() {
     // 初始化
     std::array<int, 5> my_array1;
     std::array<int, 5> my_array2 = {0, 1, 2};
@@ -99,6 +101,8 @@ int stl_array() {
     return 0;
 }
 
+
 } // namespace my_string
+} // namespace my_base
 
 #endif

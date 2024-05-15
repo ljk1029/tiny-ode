@@ -17,13 +17,13 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/)
 
 # 生成可执行文件
 add_executable(${TARGET1} 
-        test.cpp
-    )
+    demo_lib.cpp
+)
 
 # 链接库
 target_link_libraries(${TARGET1}  
-        -lpthread
-    )    
+    -lpthread
+)    
 
 # 设置输出路径
 set_target_properties(${TARGET1} PROPERTIES

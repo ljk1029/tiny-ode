@@ -11,7 +11,8 @@
 #include <mutex>
 #include <thread>
 
-namespace mythread {
+namespace my_base {
+namespace my_thread {
 // 锁
 std::mutex mtx;
 std::condition_variable cv;
@@ -54,8 +55,9 @@ void consumer() {
     }
     std::cout << "consumer exit" << std::endl;
 }
+
 // 创建
-void create_thread() {
+void createThread() {
     std::thread t1(producer, "thread_");
     std::thread t2(consumer);
     t1.detach();         // 分离式
@@ -66,3 +68,4 @@ void create_thread() {
 }
 
 } // namespace mythread
+}

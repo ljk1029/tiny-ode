@@ -27,34 +27,45 @@ std::filesystem::directory_iterator：用于遍历目录中的文件项。
 std::filesystem::recursive_directory_iterator：递归遍历目录中的文件项。
 */
 
-namespace myfile {
-using Path_Const = const std::filesystem::path;
 
-Path_Const dir_path{"mydir"};
-Path_Const dirs_path{"mydir/dirB"};
+namespace my_base {
+namespace my_file {
+using PathConst = const std::filesystem::path;
+
+PathConst dir_path{"mydir"};
+PathConst dirs_path{"mydir/dir_b"};
 
 /**
+ * filesystem
  * 文件夹、路径操作
  */
-Path_Const getPath() { return std::filesystem::current_path(); }
+PathConst getPath() { 
+    return std::filesystem::current_path(); 
+}
 
-bool isExist(Path_Const path) { return std::filesystem::exists(path); }
+bool isExist(PathConst path) { 
+    return std::filesystem::exists(path); 
+}
 
-bool isDir(Path_Const path) { return std::filesystem::is_directory(path); }
+bool isDir(PathConst path) { 
+    return std::filesystem::is_directory(path); 
+}
 
 // 是否普通文件，非目录，软连接，设备文件
-bool isFile(Path_Const path) { return std::filesystem::is_regular_file(path); }
+bool isFile(PathConst path) { 
+    return std::filesystem::is_regular_file(path); 
+}
 
-bool createDir(Path_Const path) {
+bool createDir(PathConst path) {
     return std::filesystem::create_directory(path);
 }
 
-bool createDirs(Path_Const path) {
+bool createDirs(PathConst path) {
     return std::filesystem::create_directories(path);
 }
 
 // 只能删除空文件夹
-void reMove(Path_Const path) {
+void reMove(PathConst path) {
     for (const auto &entry : std::filesystem::directory_iterator(path)) {
         if (std::filesystem::is_directory(entry)) {
             reMove(entry); // 递归删除子文件夹
@@ -62,16 +73,15 @@ void reMove(Path_Const path) {
             std::filesystem::remove(entry); // 删除文件
         }
     }
-
     std::filesystem::remove(path); // 删除空的文件夹
 }
 
 // 只能修改单级命名
-void reName(Path_Const path, Path_Const new_path) {
+void reName(PathConst path, PathConst new_path) {
     std::filesystem::rename(path, new_path);
 }
 
-void iteratorDir(Path_Const path) {
+void iteratorDir(PathConst path) {
     // 遍历本文件夹下文件
     for (const auto &file : std::filesystem::directory_iterator(path)) {
         std::cout << "dir:" << file.path() << std::endl;
@@ -85,10 +95,11 @@ void iteratorDir(Path_Const path) {
 }
 
 /**
+ * fstream 
  * 文件读写操作
  */
 // 写
-void writeFile(const char *&file) {
+void fileWrite(const char *&file) {
     std::ofstream outputFile(file); // 打开文件，如果不存在则创建新文件
 
     if (outputFile.is_open()) {        // 检查文件是否成功打开
@@ -98,7 +109,7 @@ void writeFile(const char *&file) {
 }
 
 // 读
-void readFile(const char *&file) {
+void fileRead(const char *&file) {
     std::ifstream inputFile(file);
 
     if (inputFile.is_open()) {
@@ -111,7 +122,7 @@ void readFile(const char *&file) {
 }
 
 // 追加
-void appFile(const char *&file) {
+void fileAppend(const char *&file) {
     std::ofstream outputFile(file, std::ios::app);
     if (outputFile.is_open()) {        // 检查文件是否成功打开
         outputFile << "Appended line"; // 追加内容
@@ -120,3 +131,4 @@ void appFile(const char *&file) {
 }
 
 } // namespace myfile
+} 

@@ -4,9 +4,10 @@
 #include <map>
 #include <string>
 
+namespace my_base {
 namespace stl_map {
 // 初始化
-int map_make() {
+int mapMake() {
     // 创建一个字符串到整数的映射
     std::map<std::string, int> studentScores;
 
@@ -24,7 +25,7 @@ int map_make() {
 }
 
 // 遍历
-int map_iterator() {
+int mapIterator() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -40,7 +41,7 @@ int map_iterator() {
 }
 
 // 查找
-int map_find() {
+int mapFind() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -57,7 +58,7 @@ int map_find() {
 }
 
 // 删除
-int map_erase() {
+int mapErase() {
     std::map<std::string, int> studentScores;
     studentScores["Alice"] = 95;
     studentScores["Bob"] = 87;
@@ -75,5 +76,6 @@ int map_erase() {
 }
 
 } // namespace stl_map
+}
 
 #endif

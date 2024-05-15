@@ -26,17 +26,18 @@ Period> 来创建，其中 Rep 是表示时间间隔的值的类型， Period
 将一个时间间隔转换为不同单位的时间间隔。
 */
 
-namespace mychrono {
+namespace my_base {
+namespace my_chrono {
 using CallbackFuc = std::function<void()>;
 
 // 休眠
-void sleep_s(int cnt) {
+void sleepS(int cnt) {
     std::cout << "休眠：" << cnt << "S" << std::endl;
     std::this_thread::sleep_for(std::chrono::seconds(cnt));
 }
 
 // 获取时间
-void get_time() {
+void getTime() {
     std::chrono::system_clock::time_point now =
         std::chrono::system_clock::now();
     std::time_t now_c = std::chrono::system_clock::to_time_t(now);
@@ -44,7 +45,7 @@ void get_time() {
 }
 
 // 回调函数时间测试
-void count_time(CallbackFuc callback) {
+void countTime(CallbackFuc callback) {
     auto start = std::chrono::high_resolution_clock::now();
     // 执行一些代码
     callback();
@@ -54,3 +55,4 @@ void count_time(CallbackFuc callback) {
 }
 
 } // namespace mychrono
+}
