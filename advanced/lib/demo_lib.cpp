@@ -39,12 +39,19 @@ void filesystemDirTest(my_base::TestRunner &test_runner) {
 
 // 读写文件测试
 void fileRWTest(my_base::TestRunner &test_runner) {
+    std::cout << "start..." << std::endl;
     if( test_runner.getRunStatus("filerw") ){
         const char *file{"file.txt"};
-        my_base::my_file::fileWrite(file);
-        my_base::my_file::fileRead(file);
-        my_base::my_file::fileAppend(file);
-        my_base::my_file::fileRead(file);
+        test_runner.funcPrint("fileWrite()",  [&file](){
+            my_base::my_file::fileWrite(file);
+        });
+        test_runner.funcPrint("fileRead()",  [&file](){
+            my_base::my_file::fileRead(file);
+        });
+        test_runner.funcPrint("fileAppend()",  [&file](){
+            my_base::my_file::fileAppend(file);
+            my_base::my_file::fileRead(file);
+        });
     }
 }
 
