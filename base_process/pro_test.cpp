@@ -39,8 +39,7 @@ void consumer_lock() {
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
         std::unique_lock<std::mutex> lock(mtx);
         if (loop_cnt % 2) {
-            std::cout << "Consumed data: illegal lock acquisition: " << loop_cnt
-                      << std::endl;
+            std::cout << "Consumed data: illegal lock acquisition: " << loop_cnt << std::endl;
             std::exit(1);
         }
         std::cout << "Consumed data: *********\n";
@@ -70,16 +69,13 @@ void producer_wait() {
 void consumer_wait() {
     while (loop_cnt < loop_exit_cnt) {
         std::unique_lock<std::mutex> lock(mtx);
-        std::cout << std::boolalpha << "Consumed_wait lock: " << loop_cnt
-                  << ", " << is_data_ready << std::endl;
+        std::cout << std::boolalpha << "Consumed_wait lock: " << loop_cnt << ", " << is_data_ready << std::endl;
         // cv.wait_for(lock, std::chrono::milliseconds(30), [] {
         cv.wait(lock, [] {
-            std::cout << "Consumed_wait wait: " << loop_cnt << ", "
-                      << is_data_ready << std::endl;
+            std::cout << "Consumed_wait wait: " << loop_cnt << ", " << is_data_ready << std::endl;
             return is_data_ready;
         });
-        std::cout << "Consumed_wait data: " << loop_cnt << ", " << is_data_ready
-                  << std::endl;
+        std::cout << "Consumed_wait data: " << loop_cnt << ", " << is_data_ready << std::endl;
         is_data_ready = false;
     }
     std::cout << std::noboolalpha << "Consumer exit" << std::endl;

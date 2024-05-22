@@ -175,12 +175,11 @@ bool cmdOptionExists(char **begin, char **end, const std::string &option) {
     return std::find(begin, end, option) != end;
 }
 
-#define RUN_SORT_3(task_number)                                                \
-    if (cases_run == nullptr ||                                                \
-        (cases_string.find("f" #task_number) != std::string::npos &&           \
-         cases_string.size() == 3)) {                                          \
-        std::cout << "sort" #task_number << std::endl;                         \
-        test_sort_algorithm(task_number);                                      \
+#define RUN_SORT_3(task_number)                                                                                        \
+    if (cases_run == nullptr ||                                                                                        \
+        (cases_string.find("f" #task_number) != std::string::npos && cases_string.size() == 3)) {                      \
+        std::cout << "sort" #task_number << std::endl;                                                                 \
+        test_sort_algorithm(task_number);                                                                              \
     }
 
 // 测试函数入口

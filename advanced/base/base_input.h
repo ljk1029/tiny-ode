@@ -36,10 +36,10 @@ int ioCin() {
 // 引用测试
 int valueQuote() {
     std::cout << "[引用测试 function]" << std::endl;
-    int my_value  = 42;
+    int my_value = 42;
     int &my_quote = my_value;
     std::cout << "value:   " << my_value << " & " << &my_value << std::endl;
-    std::cout << "quote: "   << my_quote << " & " << &my_quote << std::endl;
+    std::cout << "quote: " << my_quote << " & " << &my_quote << std::endl;
     return 0;
 }
 

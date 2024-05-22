@@ -23,8 +23,7 @@ int setAll() {
 
     // 使用迭代器遍历 set
     std::cout << "Set elements: ";
-    for (std::set<int>::iterator it = numbers.begin(); it != numbers.end();
-         ++it) {
+    for (std::set<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
@@ -40,6 +39,6 @@ int setAll() {
 }
 
 } // namespace stl_set
-}
+} // namespace my_base
 
 #endif

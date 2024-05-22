@@ -3,8 +3,8 @@
 
 /**
  * 类继承实例测试
- * 
- * */ 
+ *
+ * */
 template <typename T> class B {
 public:
     void print() {
@@ -14,9 +14,7 @@ public:
         free(demangled);
     }
 
-    void _print() {
-        std::cout << "Class B specialized for type " << typeid(T).name() << std::endl;
-    }
+    void _print() { std::cout << "Class B specialized for type " << typeid(T).name() << std::endl; }
 };
 
 class C {
@@ -24,8 +22,7 @@ public:
     void print() { std::cout << "Class C" << std::endl; }
 };
 
-class A : public B<C> {
-};
+class A : public B<C> {};
 
 // 测试类
 int main(int argc, char *argv[]) {
@@ -34,10 +31,10 @@ int main(int argc, char *argv[]) {
     aObj._print();
 
     B<C> bObj;
-    bObj.print(); 
-    bObj._print(); 
-    
+    bObj.print();
+    bObj._print();
+
     C cObj;
-    cObj.print(); 
+    cObj.print();
     return 0;
 }

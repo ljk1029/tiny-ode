@@ -37,8 +37,7 @@ int listIterator() {
 
     // 使用迭代器遍历 list
     std::cout << "iterator: ";
-    for (std::list<int>::iterator it = numbers.begin(); it != numbers.end();
-         ++it) {
+    for (std::list<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
@@ -86,6 +85,6 @@ int listRemove() {
 }
 
 } // namespace stl_list
-}
+} // namespace my_base
 
 #endif

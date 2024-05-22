@@ -13,37 +13,76 @@ set(TARGET2 "my_stl")
 set(TARGET3 "my_type")
 set(TARGET4 "my_class")
 
+# 将配置文件内容读取到一个变量中
+file(READ config.ini configContents)
+
+# 定义一个函数，用于从配置内容中解析特定节下的设置
+function(parse_ini_section section key var)
+    string(REGEX MATCH "\\[${section}\\][^\[]*" sectionContent "${configContents}")
+    string(REGEX MATCH "${key}=([A-Za-z0-9]+)" keyValue "${sectionContent}")
+    if(NOT "${keyValue}" STREQUAL "")
+        string(REPLACE "${key}=" "" value "${keyValue}")
+        set(${var} ${value} PARENT_SCOPE)
+    endif()
+endfunction()
+
+# 解析配置文件下参数
+parse_ini_section("Build" "Debug" BUILD_DEBUG)
+parse_ini_section("Function" "USE_TEST" FUNCTION_USE_TEST)
+parse_ini_section("Function" "USE_FUN"  FUNCTION_USE_FUN)
+
+# 打印解析结果验证
+message("BUILD_DEBUG: ${BUILD_DEBUG}")
+message("FUNCTION_USE_TES: ${FUNCTION_USE_TEST}")
+message("FUNCTION_USE_FUN: ${FUNCTION_USE_FUN}")
+
+# 设置编译选项, 与CMAKE_CXX_FLAGS是重复的
+if (BUILD_DEBUG)
+    message("Debug mode enabled")
+    set(CMAKE_BUILD_TYPE Debug)
+else()
+    message("Release mode enabled")
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+
+if(FUNCTION_USE_TEST)
+    add_executable(a.out ${CMAKE_CURRENT_SOURCE_DIR}/my_demo.cpp)
+    set_target_properties(a.out PROPERTIES  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+endif()
+
+# 功能模块编译开关
+if(FUNCTION_USE_FUN)    
 # 添加头文件搜索路径
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/base/)
 
-# 生成可执行文件
-# base
+# 1、base模块 生成可执行文件
 add_executable(${TARGET1} 
     ${CMAKE_CURRENT_SOURCE_DIR}/base/demo_base.cpp
 )
-
-# class
 add_executable(${TARGET4} 
-    ${CMAKE_CURRENT_SOURCE_DIR}/base/my_class.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/base/demo_class.cpp
 )
 
-# stl
+# 2、stl模块
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/stl/)
 add_executable(${TARGET2}
-    ${CMAKE_CURRENT_SOURCE_DIR}/stl/demo_stl.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/base_stl/demo_stl.cpp
 )
 
-# template
+# 3、template模块
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/template/)
 add_executable(${TARGET3}
-    ${CMAKE_CURRENT_SOURCE_DIR}/template/demo_type.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/base_template/demo_type.cpp
 )
 
 # 设置输出路径
 set_target_properties(${TARGET1} ${TARGET4} ${TARGET2} ${TARGET3} 
     PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin
+)
 
+# 4、添加子目录
+add_subdirectory(modules)
 
-# 添加子目录
-add_subdirectory(lib)
+endif()

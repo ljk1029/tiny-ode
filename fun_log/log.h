@@ -17,12 +17,7 @@ namespace log_tool {
 // 日志路径
 constexpr const char *log_file{"./log.txt"};
 const unsigned int log_switch{3U};
-enum class LogLevel : unsigned int {
-    kDebug = 1,
-    kInfo = 2,
-    kWarn = 3,
-    kError = 4
-};
+enum class LogLevel : unsigned int { kDebug = 1, kInfo = 2, kWarn = 3, kError = 4 };
 
 // 打印颜色
 /*

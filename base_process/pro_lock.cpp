@@ -24,8 +24,7 @@ void producer_lock(const char *name) {
         std::lock_guard<std::mutex> lock(mtx);
         if (isDataReady == false) {
             sharedData++;
-            std::cout << name << "producer data: " << sharedData
-                      << ",lock: " << isDataReady << std::endl;
+            std::cout << name << "producer data: " << sharedData << ",lock: " << isDataReady << std::endl;
             isDataReady = true;
             // std::this_thread::sleep_for(std::chrono::seconds(1)); //
             // 模拟生产数据的耗时操作
@@ -39,8 +38,7 @@ void consumer_lock() {
     while (sharedData < loop_cnt) {
         std::unique_lock<std::mutex> lock(mtx);
         if (isDataReady == true) {
-            std::cout << "Consumed data: " << sharedData
-                      << ", lock: " << isDataReady << std::endl;
+            std::cout << "Consumed data: " << sharedData << ", lock: " << isDataReady << std::endl;
             isDataReady = false;
         } else {
             // std::this_thread::sleep_for(std::chrono::milliseconds(10)); //
@@ -57,8 +55,7 @@ void producer_wait(const char *name) {
         std::lock_guard<std::mutex> lock(mtx);
         if (isDataReady == false)
             sharedData++;
-        std::cout << name << "producer data: " << sharedData
-                  << ", lock: " << isDataReady << std::endl;
+        std::cout << name << "producer data: " << sharedData << ", lock: " << isDataReady << std::endl;
         isDataReady = true;
         // cv.notify_one(); // 通知消费者线程，数据已准备好
         cv.notify_all();
@@ -71,15 +68,13 @@ void producer_wait(const char *name) {
 void consumer_wait() {
     while (sharedData < loop_cnt * 2) {
         std::unique_lock<std::mutex> lock(mtx);
-        cv.wait(
-            lock,
-            [] { // 等待时释放所有锁, 一旦条件满足（本例中是isDataReady ==
-                 // true），条件变量会唤醒等待的线程，然后再次尝试获得互斥锁。
-                std::cout << "Consumed lock ...: " << isDataReady << std::endl;
-                return isDataReady;
-            }); // 等待数据准备好的通知
-        std::cout << "Consumed data: " << sharedData
-                  << ", lock: " << isDataReady << std::endl;
+        cv.wait(lock,
+                [] { // 等待时释放所有锁, 一旦条件满足（本例中是isDataReady ==
+                     // true），条件变量会唤醒等待的线程，然后再次尝试获得互斥锁。
+                    std::cout << "Consumed lock ...: " << isDataReady << std::endl;
+                    return isDataReady;
+                }); // 等待数据准备好的通知
+        std::cout << "Consumed data: " << sharedData << ", lock: " << isDataReady << std::endl;
         isDataReady = false;
     }
     std::cout << "consumer exit" << std::endl;
@@ -89,11 +84,9 @@ void consumer_wait() {
 void consumer_wait_for() {
     while (sharedData < loop_cnt * 2) {
         std::unique_lock<std::mutex> lock(mtx);
-        cv.wait_for(lock, std::chrono::milliseconds(30), [] {
-            return isDataReady;
-        }); // 等待数据准备好的通知或超过固定时间
-        std::cout << "Consumed for data: " << sharedData
-                  << ", lock: " << isDataReady << std::endl;
+        cv.wait_for(lock, std::chrono::milliseconds(30),
+                    [] { return isDataReady; }); // 等待数据准备好的通知或超过固定时间
+        std::cout << "Consumed for data: " << sharedData << ", lock: " << isDataReady << std::endl;
         isDataReady = false;
     }
     std::cout << "consumer exit" << std::endl;

@@ -3,8 +3,7 @@
 #include <string>
 
 // Template definition for the callback function
-template <typename ReturnType>
-using CallbackFunc = std::function<ReturnType()>;
+template <typename ReturnType> using CallbackFunc = std::function<ReturnType()>;
 
 // Generic func_print overload for non-void return types
 int func_print(const std::string &title, CallbackFunc<int> callback) {
@@ -26,9 +25,7 @@ void func_print(const std::string &title, CallbackFunc<void> callback) {
 }
 
 // Callback functions
-void voidCallbackFunction() {
-    std::cout << "Void Callback function is called." << std::endl;
-}
+void voidCallbackFunction() { std::cout << "Void Callback function is called." << std::endl; }
 
 int intCallbackFunction() {
     std::cout << "Int Callback function is called." << std::endl;
@@ -41,11 +38,11 @@ int intCallbackFunction() {
 // 调整这个值来设置总的打印长度
 const int TOTAL_PRINT_LENGTH = 40;
 
-void printTitle(const std::string& title, bool startMode) {
+void printTitle(const std::string &title, bool startMode) {
     std::cout << title.length() << "\n";
     // 计算边框长度
     int borderLength = (TOTAL_PRINT_LENGTH - title.length() - 10) / 2; // 10是"[test "和" start]"的额外字符长度
-    if(borderLength < 0) {
+    if (borderLength < 0) {
         borderLength = 0; // 防止负数
     }
 
@@ -61,12 +58,11 @@ void printTitle(const std::string& title, bool startMode) {
     std::cout << border << std::endl;
 }
 
-
 #include "print.h"
 
 int main() {
     my_print::funcPrint<void>("voidCallbackFunction", voidCallbackFunction);
-    my_print::funcPrint<int>("intCallbackFunction",  intCallbackFunction);
+    my_print::funcPrint<int>("intCallbackFunction", intCallbackFunction);
     printTitle("My Super Long Function Name That Will Break Borders", true); // 测试超长标题
     printTitle("Short Title", true);
     printTitle("Short    Tit   le", false);
@@ -76,10 +72,10 @@ int main() {
 
 // Main function
 int main_test() {
-    //int intValue = func_print("My Callback", intCallbackFunction);
-    //std::cout << "Returned value: " << intValue << std::endl;
+    // int intValue = func_print("My Callback", intCallbackFunction);
+    // std::cout << "Returned value: " << intValue << std::endl;
 
-   // func_print("Void Callback", voidCallbackFunction);
+    // func_print("Void Callback", voidCallbackFunction);
 
     return 0;
 }

@@ -25,8 +25,8 @@ int memoryNew() {
     int *p1 = new int;
     int *p2 = new int(2);  // 初始化2
     int *p3 = new int[10]; // 开辟10个int
-    std::cout << "new int:"     << *p1 << std::endl;
-    std::cout << "new int(2):"  << *p2 << std::endl;
+    std::cout << "new int:" << *p1 << std::endl;
+    std::cout << "new int(2):" << *p2 << std::endl;
     std::cout << "new int[10]:" << *p3 << std::endl;
     delete p1;
     delete p2;
@@ -43,8 +43,8 @@ int memoryNews() {
     for (int i = 0; i < n; i++)
         std::cout << arr[i] << " ";
     std::cout << std::endl;
-    
-    delete[] arr; 
+
+    delete[] arr;
     return 0;
 }
 

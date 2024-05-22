@@ -19,13 +19,9 @@ void thread_function(const char *message) {
 // 类 做为线程函数
 class Thread_c {
 public:
-    void operator()() const {
-        std::cout << "Hello from the thread class operator!\n";
-    }
+    void operator()() const { std::cout << "Hello from the thread class operator!\n"; }
 
-    void thread_function() const {
-        std::cout << "Hello from the thread member function!\n";
-    }
+    void thread_function() const { std::cout << "Hello from the thread member function!\n"; }
 };
 
 // 不带参数
@@ -75,8 +71,7 @@ int thread_create_fun5() {
 
 // 获取ID
 int thread_create_fun6() {
-    std::cout << "Process ID:" << getpid()
-              << ", Thread ID: " << std::this_thread::get_id() << std::endl;
+    std::cout << "Process ID:" << getpid() << ", Thread ID: " << std::this_thread::get_id() << std::endl;
     std::thread t([]() {
         std::thread::id id = std::this_thread::get_id();
         std::cout << "Thread ID: " << id << std::endl;
@@ -116,9 +111,8 @@ int thread_create_fun8() {
 #else
     std::thread t1(thread_function, "move 1");
     std::thread t2(thread_function, "move 2");
-    t2 =
-        std::move(t1); // t1已关联一个线程，再赋值会调用std::terminate()终止程序
-                       // 线程转移关关联
+    t2 = std::move(t1); // t1已关联一个线程，再赋值会调用std::terminate()终止程序
+                        // 线程转移关关联
     t1.join();
     t2.join();
 #endif
@@ -132,9 +126,7 @@ int thread_create_fun8() {
 std::once_flag onceFlag;
 
 // 函数只会执行一次
-void initialize() {
-    std::cout << "Initialize function called once" << std::endl;
-}
+void initialize() { std::cout << "Initialize function called once" << std::endl; }
 
 void thread_create_fun9(int idx) {
     std::cout << "Hello from the process:" << idx << "\n";

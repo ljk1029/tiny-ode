@@ -90,8 +90,7 @@ int verctorIterator() {
 
     // 使用迭代器遍历 vector
     std::cout << "Vector iterator: ";
-    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end();
-         ++it) {
+    for (std::vector<int>::iterator it = numbers.begin(); it != numbers.end(); ++it) {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
@@ -99,5 +98,5 @@ int verctorIterator() {
 }
 
 } // namespace stl_vector
-}
+} // namespace my_base
 #endif

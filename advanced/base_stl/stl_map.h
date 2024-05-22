@@ -33,8 +33,7 @@ int mapIterator() {
 
     // 使用迭代器遍历 map
     std::cout << "iterator map:" << std::endl;
-    for (std::map<std::string, int>::iterator it = studentScores.begin();
-         it != studentScores.end(); ++it) {
+    for (std::map<std::string, int>::iterator it = studentScores.begin(); it != studentScores.end(); ++it) {
         std::cout << it->first << ": " << it->second << std::endl;
     }
     return 0;
@@ -76,6 +75,6 @@ int mapErase() {
 }
 
 } // namespace stl_map
-}
+} // namespace my_base
 
 #endif

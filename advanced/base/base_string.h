@@ -7,7 +7,7 @@
 
 namespace my_base {
 namespace my_string {
-    
+
 // 字符串 属于stl，自动释放
 int stlString() {
     // 初始化
@@ -31,8 +31,7 @@ int stlString() {
     std::cout << length << std::endl;
 
     // 字符串比较
-    std::cout << "字符比较:str1[0]" << str1[0] << "str2[0]" << str2[0]
-              << std::endl;
+    std::cout << "字符比较:str1[0]" << str1[0] << "str2[0]" << str2[0] << std::endl;
     if (str1 == str2) {
         std::cout << "str1 == str2" << std::endl;
     } else if (str1 < str2) {
@@ -90,8 +89,7 @@ int stlArray() {
 
     // 大小
     for (int i = 0; i < my_array1.size(); i++) {
-        std::cout << "idx:" << my_array1[i] << "  size:" << my_array1.size()
-                  << std::endl;
+        std::cout << "idx:" << my_array1[i] << "  size:" << my_array1.size() << std::endl;
     }
 
     // 或使用范围-based for 循环
@@ -100,7 +98,6 @@ int stlArray() {
     }
     return 0;
 }
-
 
 } // namespace my_string
 } // namespace my_base

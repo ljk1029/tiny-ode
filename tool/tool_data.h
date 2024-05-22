@@ -250,9 +250,7 @@ private:
 };
 
 // get list current size
-template <typename T> int CustomLinkedList<T>::GetSize() {
-    return list_cur_size;
-}
+template <typename T> int CustomLinkedList<T>::GetSize() { return list_cur_size; }
 
 // clear all elements
 template <typename T> int CustomLinkedList<T>::Clear() {
