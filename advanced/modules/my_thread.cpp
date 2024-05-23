@@ -1,14 +1,18 @@
 #include <iostream>
 #include <condition_variable>
 #include <mutex>
+#include <atomic>
 #include <thread>
 // unix
 #include <unistd.h>
 #include <vector>
-
+#include "common.h"
 
 
 namespace my_thread{
+/**
+ * 线程创建使用方式
+*/
 namespace my_c{
 #define GET_PID() std::cout << "Process ID: " << getpid() << std::endl
 #define GET_TID() std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl
@@ -151,10 +155,11 @@ void threadCreateFun9(int index) {
 
 }
 
-namespace my_lock {
+
 /**
  * 锁离开作用域自动释放
- * 相比lock_guard，unique_lock可以手动加解锁，
+ * std::lock_guard 没有提供释放锁的操作
+ * unique_lock可以手动加解锁，
  * 1、注意wait执行是会释放所有锁，直到返回值为true才重新获取锁
  * 2、std::lock_guard<std::mutex> lock(mtx); 会获取锁保护作用区，
  *    但特例是和wait一起使用时，不管锁是释放还是使用状态，都会执行到wait
@@ -162,7 +167,7 @@ namespace my_lock {
  * 锁被其他线程占用，返回false(一般全局变量，用来做状态)，wait会阻塞，等待notify_all通知后或者使用wait_for超时，再次返回true，执行后续
  *    (2) 锁被释放，返回true，执行后续
  */
-
+namespace my_lock {
 // 锁
 std::mutex mtx;
 std::condition_variable cv;
@@ -243,7 +248,31 @@ void consumerWaitFor() {
     }
     std::cout << "ConsumerWaitFor exit" << std::endl;
 }
+}
 
+
+/**
+ * atomic 原子操作
+*/
+namespace my_atomic {
+// 原子布尔变量，用于指示数据是否已准备好
+std::atomic_bool data_ready(false);
+int shared_data = 0;
+// 生产者线程
+void producerAtomic() {
+    std::this_thread::sleep_for(std::chrono::seconds(1)); // 模拟生产数据的耗时操作
+    shared_data = 42; // 生产数据
+    std::cout << "Producer: Data produced.\n";
+    data_ready.store(true); // 设置数据已准备好
+}
+
+// 消费者线程
+void consumerAtomic() {
+    while (!data_ready.load()) { // 等待数据准备好
+        std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 休眠以避免忙等
+    }
+    std::cout << "Consumer: Data consumed: " << shared_data << "\n";
+}
 }
 }
 
@@ -272,15 +301,37 @@ void main_lock() {
 
 void main_wait() {
     std::thread t3(my_thread::my_lock::producerWait);
-    std::thread t4(my_thread::my_lock::consumerWaitFor);
+    //std::thread t4(my_thread::my_lock::consumerWaitFor);
+    std::thread t4(my_thread::my_lock::consumerWait);
     t3.join();
     t4.join();
 }
 
+void main_atomic() {
+    std::thread producer_thread(my_thread::my_atomic::producerAtomic);
+    std::thread consumer_thread(my_thread::my_atomic::consumerAtomic);
+    producer_thread.join();
+    consumer_thread.join();
+}
+
 // 测试
-int main(int arg, char *argv[]) {
-    //main_thread();
+#ifndef MY_MODULES_TEST
+int main(int argc, char *argv[])
+#else
+int thread_main(int argc, char *argv[])
+#endif
+{
+#if 0
+    main_thread();
+#endif
+#if 1
     main_lock();
+#endif
+#if 1
     main_wait();
+#endif
+#if 1
+    main_atomic();
+#endif
     return 0;
 }

@@ -10,6 +10,7 @@
 #include <mutex>
 #include <thread>
 #include "common.h"
+#include "my_thread.cpp"
 
 namespace my_thread {
 // 锁
