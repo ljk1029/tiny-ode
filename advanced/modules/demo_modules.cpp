@@ -21,9 +21,9 @@ void fileTest(my_base::TestRunner &test_runner) {
     // 目录测试
     if (test_runner.getRunStatus("dir")) {
         my_base::print("dir module test");
-        my_file::ConstPath cur_directory{"mydir"};  // 顶层目录
-        my_file::ConstPath sub_directory{"mydir/dir1"};  // 子目录
-        my_file::ConstPath new_directory = {"mydir/mk1"};// 新建目录
+        my_file::ConstPath cur_directory{"mydir"};        // 顶层目录
+        my_file::ConstPath sub_directory{"mydir/dir1"};   // 子目录
+        my_file::ConstPath new_directory = {"mydir/mk1"}; // 新建目录
 
         my_file::getPath();
         my_file::createDir(cur_directory);
@@ -60,14 +60,11 @@ void threadTest(my_base::TestRunner &test_runner) {
     }
     if (test_runner.getRunStatus("thread")) {
         my_base::print("threadEx module test");
-        #ifdef MY_MODULES_TEST
+#ifdef MY_MODULES_TEST
         thread_main(0, nullptr);
-        #endif
+#endif
     }
 }
-
-
-
 
 #ifdef MY_MODULES_TEST
 int main(int argc, char *argv[]) {

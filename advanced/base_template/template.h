@@ -39,7 +39,7 @@ void templatePrint() {
 }
 
 // 变参模板函数，用于打印不定数量参数
-template <typename T, typename... Args> void templatePrint(const T &first_arg, const Args &... args) {
+template <typename T, typename... Args> void templatePrint(const T &first_arg, const Args &...args) {
     std::cout << first_arg << ", "; // 打印当前参数
     templatePrint(args...);         // 递归调用，打印剩余的参数
 }

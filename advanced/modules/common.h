@@ -58,6 +58,5 @@ namespace my_thread {
 void createThread();
 } // namespace my_thread
 
-
 int thread_main(int argc, char *argv[]);
 int process_main(int argc, char *argv[]);

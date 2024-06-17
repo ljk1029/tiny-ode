@@ -79,9 +79,6 @@ void listPrint(ListNode *list) {
 }
 
 int main(int argc, char *argv[]) {
-    // int a;
-    // cin >> a;
-
     ListNode *head = nullptr;
     for (int i = 0; i < 7; i++) {
         head = new ListNode(i, head);
@@ -90,6 +87,4 @@ int main(int argc, char *argv[]) {
     listPrint(head);
     head = swapListFun(head, 2);
     listPrint(head);
-
-    cout << "Hello World!" << endl;
 }

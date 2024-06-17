@@ -2252,9 +2252,7 @@ GTEST_DISABLE_MSC_DEPRECATED_POP_()
 // imitation of standard behaviour.
 [[noreturn]] void Abort();
 #else
-[[noreturn]] inline void Abort() {
-    abort();
-}
+[[noreturn]] inline void Abort() { abort(); }
 #endif // GTEST_OS_WINDOWS_MOBILE
 
 } // namespace posix
@@ -4299,7 +4297,7 @@ struct FlatTupleBase<FlatTuple<T...>, IndexSequence<Idx...>> : FlatTupleElemBase
     using Indices = IndexSequence<Idx...>;
     FlatTupleBase() = default;
     template <typename... Args>
-    explicit FlatTupleBase(FlatTupleConstructTag, Args &&... args)
+    explicit FlatTupleBase(FlatTupleConstructTag, Args &&...args)
         : FlatTupleElemBase<FlatTuple<T...>, Idx>(FlatTupleConstructTag{}, std::forward<Args>(args))... {}
 
     template <size_t I> const typename ElemFromList<I, T...>::type &Get() const {
@@ -4335,7 +4333,7 @@ class FlatTuple : private FlatTupleBase<FlatTuple<T...>, typename MakeIndexSeque
 public:
     FlatTuple() = default;
     template <typename... Args>
-    explicit FlatTuple(FlatTupleConstructTag tag, Args &&... args)
+    explicit FlatTuple(FlatTupleConstructTag tag, Args &&...args)
         : FlatTuple::FlatTupleBase(tag, std::forward<Args>(args)...) {}
 
     using FlatTuple::FlatTupleBase::Apply;
@@ -8091,7 +8089,7 @@ private:
 
 template <class... Gen> class CartesianProductHolder {
 public:
-    CartesianProductHolder(const Gen &... g) : generators_(g...) {}
+    CartesianProductHolder(const Gen &...g) : generators_(g...) {}
     template <typename... T> operator ParamGenerator<::std::tuple<T...>>() const {
         return ParamGenerator<::std::tuple<T...>>(new CartesianProductGenerator<T...>(generators_));
     }
@@ -8316,7 +8314,7 @@ inline internal::ParamGenerator<bool> Bool() { return Values(false, true); }
 // INSTANTIATE_TEST_SUITE_P(TwoBoolSequence, FlagDependentTest,
 //                          Combine(Bool(), Bool()));
 //
-template <typename... Generator> internal::CartesianProductHolder<Generator...> Combine(const Generator &... g) {
+template <typename... Generator> internal::CartesianProductHolder<Generator...> Combine(const Generator &...g) {
     return internal::CartesianProductHolder<Generator...>(g...);
 }
 
@@ -11206,7 +11204,7 @@ GTEST_API_ std::string TempDir();
 //   return RUN_ALL_TESTS();
 // }
 //
-template <int &... ExplicitParameterBarrier, typename Factory>
+template <int &...ExplicitParameterBarrier, typename Factory>
 TestInfo *RegisterTest(const char *test_suite_name, const char *test_name, const char *type_param,
                        const char *value_param, const char *file, int line, Factory factory) {
     using TestT = typename std::remove_pointer<decltype(factory())>::type;

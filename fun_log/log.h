@@ -43,7 +43,7 @@ int log_colour_set() {
 }
 
 // 多参数日志
-template <typename... Args> int log(int level, const Args &... args) {
+template <typename... Args> int log(int level, const Args &...args) {
     // 获取当前时间
     auto now = std::chrono::system_clock::now();
     std::time_t time_now = std::chrono::system_clock::to_time_t(now);

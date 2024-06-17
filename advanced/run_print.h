@@ -42,12 +42,12 @@ template <typename T> typename std::enable_if<!std::is_pointer<T>::value, void>:
 }
 
 // 变参模板递归展开
-template <typename T, typename... Args> void _print(const T &first, const Args &... args) {
+template <typename T, typename... Args> void _print(const T &first, const Args &...args) {
     _print(first);
     _print(args...); // 递归调用，知道参数包展开完毕
 }
 
-template <typename... Args> void print(const Args &... args) {
+template <typename... Args> void print(const Args &...args) {
     _print(args...);
     std::cout << std::endl;
 }
@@ -56,7 +56,7 @@ template <typename... Args> void print(const Args &... args) {
 void print() { std::cout << std::endl; }
 
 // 变参模板递归展开
-template <typename T, typename... Args> void print(const T &first, const Args &... args) {
+template <typename T, typename... Args> void print(const T &first, const Args &...args) {
     if (std::is_pointer<T>::value && first == false)
         std::cout << "nullptr";
     else

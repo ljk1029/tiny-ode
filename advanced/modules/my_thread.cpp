@@ -8,15 +8,14 @@
 #include <vector>
 #include "common.h"
 
-
-namespace my_thread{
+namespace my_thread {
 /**
  * 线程创建使用方式
-*/
-namespace my_c{
+ */
+namespace my_c {
 #define GET_PID() std::cout << "Process ID: " << getpid() << std::endl
 #define GET_TID() std::cout << "Thread ID: " << std::this_thread::get_id() << std::endl
-#define PRINT_FUNC_NAME() std::cout << "\n[" << __func__ << " test]" <<std::endl
+#define PRINT_FUNC_NAME() std::cout << "\n[" << __func__ << " test]" << std::endl
 // 锁
 std::mutex mtx;
 
@@ -108,7 +107,7 @@ int threadCreateFun6() {
 int threadCreateFun7() {
     PRINT_FUNC_NAME();
     std::vector<std::thread> threads;
-    for (int i=0; i<10; ++i) {
+    for (int i = 0; i < 10; ++i) {
         threads.emplace_back(std::thread(threadFunctionLock, i + 1));
     }
     for (auto &t : threads) {
@@ -142,9 +141,7 @@ int threadCreateFun8() {
 std::once_flag onceFlag;
 
 // 函数只会执行一次
-void initialize() { 
-    std::cout << "Initialize function called once" << std::endl; 
-}
+void initialize() { std::cout << "Initialize function called once" << std::endl; }
 
 void threadCreateFun9(int index) {
     PRINT_FUNC_NAME();
@@ -153,8 +150,7 @@ void threadCreateFun9(int index) {
     std::cout << "Hello from the process after:" << index << std::endl;
 }
 
-}
-
+} // namespace my_c
 
 /**
  * 锁离开作用域自动释放
@@ -172,7 +168,7 @@ namespace my_lock {
 std::mutex mtx;
 std::condition_variable cv;
 bool is_sata_ready = false;
-int  shared_data = 0;
+int shared_data = 0;
 constexpr int loop_cnt = 10;
 
 // 生产者lock
@@ -248,12 +244,11 @@ void consumerWaitFor() {
     }
     std::cout << "ConsumerWaitFor exit" << std::endl;
 }
-}
-
+} // namespace my_lock
 
 /**
  * atomic 原子操作
-*/
+ */
 namespace my_atomic {
 // 原子布尔变量，用于指示数据是否已准备好
 std::atomic_bool data_ready(false);
@@ -261,20 +256,20 @@ int shared_data = 0;
 // 生产者线程
 void producerAtomic() {
     std::this_thread::sleep_for(std::chrono::seconds(1)); // 模拟生产数据的耗时操作
-    shared_data = 42; // 生产数据
+    shared_data = 42;                                     // 生产数据
     std::cout << "Producer: Data produced.\n";
     data_ready.store(true); // 设置数据已准备好
 }
 
 // 消费者线程
 void consumerAtomic() {
-    while (!data_ready.load()) { // 等待数据准备好
+    while (!data_ready.load()) {                                     // 等待数据准备好
         std::this_thread::sleep_for(std::chrono::milliseconds(100)); // 休眠以避免忙等
     }
     std::cout << "Consumer: Data consumed: " << shared_data << "\n";
 }
-}
-}
+} // namespace my_atomic
+} // namespace my_thread
 
 int main_thread() {
     my_thread::my_c::threadCreateFun1();
@@ -301,7 +296,7 @@ void main_lock() {
 
 void main_wait() {
     std::thread t3(my_thread::my_lock::producerWait);
-    //std::thread t4(my_thread::my_lock::consumerWaitFor);
+    // std::thread t4(my_thread::my_lock::consumerWaitFor);
     std::thread t4(my_thread::my_lock::consumerWait);
     t3.join();
     t4.join();
