@@ -2,6 +2,11 @@
   C++ study
   Qt study
 
+git@github.com:foonathan/memory.git
+git@github.com:curl/curl.git
+git@github.com:openssl/openssl.git
+git@github.com:warmcat/libwebsockets.git
+
 # c++工具
 ## gtest 安装
   1、地址:https://github.com/google/googletest.git
