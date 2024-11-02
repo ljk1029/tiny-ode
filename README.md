@@ -10,6 +10,11 @@ git@github.com:apache/brpc.git
 git@github.com:FFmpeg/FFmpeg.git
 git@github.com:ljk1029/TL_Fast-DDS.git
 
+git@github.com:FFmpeg/FFmpeg.git
+git@github.com:commaai/openpilot.git
+git@github.com:ApolloAuto/apollo.git
+git@github.com:tensorflow/tensorflow.git
+
 # c++工具
 ## gtest 安装
   1、地址:https://github.com/google/googletest.git
