@@ -1,0 +1,3 @@
+[submodule "third_part/curl"]
+	path = third_part/curl
+	url = git@github.com:curl/curl.git

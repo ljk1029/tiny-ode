@@ -2,42 +2,15 @@
   C++ study
   Qt study
 
-## 1、doc
-  文档说明
-
-## 2、qt
-  qt部分
 
 
 
-# code说明
-## 1、advanced
-  C++ 一些使用 
-### base
-  基础语法使用
 
-### type
-  template模板使用
-
-### stl
-  stl 使用
-
-### lib
-  lib 使用
-
-
-## 2、algorithm
-  算法、例题
-
-
-## 3、tool
-### 数据结构
-
-  树的旋转说明
-![image](https://github.com/ljk1029/LT_CTool/blob/main/img/tree.png)
+  树的旋转说明  
+![image](https://github.com/ljk1029/LT_CTool/blob/main/img/tree.png)   
 
 ### 排序
-![image](https://github.com/ljk1029/LT_CTool/blob/main/img/sort.png)
+![image](https://github.com/ljk1029/LT_CTool/blob/main/img/sort.png)  
 
 
 
