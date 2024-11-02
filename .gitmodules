@@ -1,3 +1,9 @@
 [submodule "third_part/curl"]
 	path = third_part/curl
 	url = git@github.com:curl/curl.git
+[submodule "third_part/ssl"]
+	path = third_part/ssl
+	url = git@github.com:openssl/openssl.git
+[submodule "third_part/websockets"]
+	path = third_part/websockets
+	url = git@github.com:warmcat/libwebsockets.git

@@ -2,18 +2,6 @@
   C++ study
   Qt study
 
-
-
-
-
-  树的旋转说明  
-![image](https://github.com/ljk1029/LT_CTool/blob/main/img/tree.png)   
-
-### 排序
-![image](https://github.com/ljk1029/LT_CTool/blob/main/img/sort.png)  
-
-
-
 # c++工具
 ## gtest 安装
   1、地址:https://github.com/google/googletest.git
