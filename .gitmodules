@@ -7,3 +7,9 @@
 [submodule "third_part/websockets"]
 	path = third_part/websockets
 	url = git@github.com:warmcat/libwebsockets.git
+[submodule "third_part/pcap"]
+	path = third_part/pcap
+	url = git@github.com:the-tcpdump-group/libpcap.git
+[submodule "third_part/foonathan_memory"]
+	path = third_part/foonathan_memory
+	url = git@github.com:foonathan/memory.git
