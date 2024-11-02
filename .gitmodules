@@ -19,3 +19,6 @@
 [submodule "thir"]
 	path = thir
 	url = git@github.com:ljk1029/TL_Fast-DDS.git
+[submodule "third_part/Fast-DDS"]
+	path = third_part/Fast-DDS
+	url = git@github.com:ljk1029/TL_Fast-DDS.git
