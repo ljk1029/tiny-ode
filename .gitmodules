@@ -16,12 +16,18 @@
 [submodule "third_part/brpc"]
 	path = third_part/brpc
 	url = git@github.com:apache/brpc.git
-[submodule "thir"]
-	path = thir
-	url = git@github.com:ljk1029/TL_Fast-DDS.git
 [submodule "third_part/Fast-DDS"]
 	path = third_part/Fast-DDS
-	url = git@github.com:ljk1029/TL_Fast-DDS.git
+	url = git@github.com:eProsima/Fast-DDS.git
 [submodule "third_part/ffmpeg"]
 	path = third_part/ffmpeg
 	url = git@github.com:FFmpeg/FFmpeg.git
+[submodule "third_part/apollo"]
+	path = third_part/apollo
+	url = git@github.com:ApolloAuto/apollo.git
+[submodule "third_part/tensorflow"]
+	path = third_part/tensorflow
+	url = git@github.com:tensorflow/tensorflow.git
+[submodule "third_part/openpilot"]
+	path = third_part/openpilot
+	url = git@github.com:commaai/openpilot.git
