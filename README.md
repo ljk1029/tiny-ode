@@ -6,6 +6,9 @@ git@github.com:foonathan/memory.git
 git@github.com:curl/curl.git
 git@github.com:openssl/openssl.git
 git@github.com:warmcat/libwebsockets.git
+git@github.com:apache/brpc.git
+git@github.com:FFmpeg/FFmpeg.git
+git@github.com:ljk1029/TL_Fast-DDS.git
 
 # c++工具
 ## gtest 安装

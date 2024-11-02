@@ -13,3 +13,9 @@
 [submodule "third_part/foonathan_memory"]
 	path = third_part/foonathan_memory
 	url = git@github.com:foonathan/memory.git
+[submodule "third_part/brpc"]
+	path = third_part/brpc
+	url = git@github.com:apache/brpc.git
+[submodule "thir"]
+	path = thir
+	url = git@github.com:ljk1029/TL_Fast-DDS.git
