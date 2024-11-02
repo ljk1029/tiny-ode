@@ -10,7 +10,7 @@ CXXFLAGS := -std=gnu++17 -Wall
 TARGET := main
 
 # 定义编译的源文件列表
-SRCS := main.cpp
+SRCS := log_main.cpp
 
 # 定义对象文件列表，由源文件列表 SRCS 导出（替换 .cpp 为 .o）
 OBJS := $(SRCS:.cpp=.o)

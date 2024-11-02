@@ -1,6 +1,22 @@
 #pragma once
 #include <sys/types.h>
 
+// 系统
+#ifndef OS_UNIX
+#define OS_UNIX
+#undef OX_WIN 
+#endif
+
+
+// 变量
+#ifndef TRUE
+#define TRUE 1
+#endif
+
+#ifndef FALSE
+#define FALSE 0
+#endif
+
 #ifndef bool
 #define bool unsigned char
 #endif
@@ -57,7 +73,9 @@
 #endif
 #endif
 
-#define NUM_MAX 0xffffffff
+// 数值
+#define NUM_MAX  0XFFFFFFFF
 
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
-#define MIN(a, b) ((a) > (b) ? (b) : (a))
+// 小函数
+#define MAX(a, b)  ((a) > (b) ? (a) : (b))
+#define MIN(a, b)  ((a) > (b) ? (b) : (a))

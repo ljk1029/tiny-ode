@@ -57,7 +57,7 @@
   g++ -std=c++17 test.cpp -lgtest -lgtest_main -lpthread
 
 ## 提交类型
-  - feat:     新功能（feature）
-  - fix:      修补bug
-  - refactor: 重构
-  - update:   更新
+  - feat:     新功能（feature） 
+  - fix:      修补bug  
+  - refactor: 重构   
+  - update:   更新  
