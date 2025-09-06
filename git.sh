@@ -1,1 +1,0 @@
-git submodule add git@github.com:openssl/openssl.git third_part/ssl
