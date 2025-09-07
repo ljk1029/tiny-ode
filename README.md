@@ -18,7 +18,7 @@
 ![image](https://github.com/ljk1029/tiny-ode/blob/main/image/img_tree.png)   
 
 - 排序
-![image](https://github.com/ljk1029/tiny-ode/blob/main/image/img_sort.png)   
+![image](https://github.com/ljk1029/tiny-ode/blob/main/iamge/img_sort.png)   
 
 
 ## 结构目录

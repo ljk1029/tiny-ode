@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include <string.h>
 
-#define SHA256_BLOCK_SIZE 32
+
 
 static const unsigned int k[64] = {
     0x428a2f98UL, 0x71374491UL, 0xb5c0fbcfUL, 0xe9b5dba5UL,
@@ -153,21 +153,4 @@ void sha256(const uint8_t data[], uint32_t len, uint8_t hash[]) {
     sha256_init(&ctx);
     sha256_update(&ctx, data, len);
     sha256_final(&ctx, hash);
-}
-
-
-
-int main() {
-    char message[] = "Hello, world!";
-    uint8_t hash[SHA256_BLOCK_SIZE];
-
-    sha256((uint8_t*)message, strlen(message), hash);
-
-    printf("SHA-256 Hash:\n");
-    for (int i = 0; i < SHA256_BLOCK_SIZE; ++i) {
-        printf("%02x", hash[i]);
-    }
-    printf("\n");
-
-    return 0;
 }

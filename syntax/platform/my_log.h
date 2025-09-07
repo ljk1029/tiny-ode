@@ -39,7 +39,7 @@ int log_set_console_colour(const char* colour) {
 // 设置黄色
 int log_console_yellow_test() {
     log_set_console_colour(SET_CLR_YELLOW);
-    std::puts("HelloWorld:yellow");
+    std::puts("HelloWorld:[yellow]");
     log_set_console_colour(SET_CLR_RESET);
     return false;
 }
@@ -47,15 +47,15 @@ int log_console_yellow_test() {
 // 设置红色
 int log_console_red_test() {
     log_set_console_colour(SET_CLR_RED);
-    std::puts("HelloWorld:red");
+    std::puts("HelloWorld:[red]");
     log_set_console_colour(SET_CLR_RESET);
     return false;
 }
 
 // 设置背景色
-int log_console_bg_test() {
+int log_console_bg_red_test() {
     log_set_console_colour(SET_CLR_RED_BG);
-    std::puts("HelloWorld:red");
+    std::puts("HelloWorld:[red]");
     log_set_console_colour(SET_CLR_RESET); 
     return false;
 }

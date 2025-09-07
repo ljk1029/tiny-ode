@@ -1,4 +1,4 @@
-#include "alg_tree.h"
+#include "my_tree.h"
 
 // 树测试
 void test_tree_insrt() {

@@ -1,5 +1,5 @@
 #include <iostream>
-#include "my_log_run.h"
+#include "my_tasks.h"
 #include "my_log.h"
 
 
@@ -31,7 +31,7 @@ int log_test() {
     log(LogLevel::ERROR, "This is an error log message using custom config.");
     log_console_yellow_test();
     log_console_red_test();
-    log_console_bg_test();
+    log_console_bg_red_test();
     return false;
 }
 

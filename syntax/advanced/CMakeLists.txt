@@ -25,11 +25,11 @@ foreach(TARGET ${TARGETS})
         ${TARGET} 
         ${CMAKE_CURRENT_SOURCE_DIR}/${TARGET}.cpp
     )
-    set_target_properties(
-        ${TARGET} 
-        PROPERTIES RUNTIME_OUTPUT_DIRECTORY
-        ${CMAKE_SOURCE_DIR}
-    )
+    # set_target_properties(
+    #     ${TARGET} 
+    #     PROPERTIES RUNTIME_OUTPUT_DIRECTORY
+    #     ${CMAKE_SOURCE_DIR}
+    # )
     target_link_libraries(${TARGET} -lpthread)
 endforeach()
 

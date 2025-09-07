@@ -1,4 +1,4 @@
-#include "alg_sort.h"
+#include "my_sort.h"
 
 // test switch
 void test_sort_algorithm(int args) {

@@ -1,5 +1,5 @@
 
-#include "thread.h"
+#include "th_thread.h"
 
 template<typename Func>
 void run_thread_test(const std::string& title, Func&& func) {

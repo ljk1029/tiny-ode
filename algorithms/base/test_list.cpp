@@ -1,4 +1,4 @@
-#include "alg_list.h"
+#include "my_list.h"
 
 using namespace my_list;
 

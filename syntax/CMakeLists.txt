@@ -42,6 +42,12 @@ endif()
 
 # 功能模块编译开关
 if(FUNCTION_USE_FUN)    
-add_subdirectory(modules)
-add_subdirectory(base_alg)
+add_subdirectory(basic)
+add_subdirectory(intermediate)
+add_subdirectory(advanced)
+add_custom_target(platform_make ALL
+    COMMAND ${CMAKE_COMMAND} -E chdir ${CMAKE_CURRENT_SOURCE_DIR}/platform make
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/platform
+    COMMENT "Building platform module with Makefile"
+)
 endif()

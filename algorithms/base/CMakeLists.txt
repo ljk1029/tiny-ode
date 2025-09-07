@@ -8,10 +8,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(TARGET1 "my_list")
-set(TARGET2 "my_tree")
+set(TARGET1 "test_list")
+set(TARGET2 "test_tree")
+set(TARGET4 "test_sort")
 set(TARGET3 "my_search")
-set(TARGET4 "my_sort")
 
 
 # 添加头文件搜索路径

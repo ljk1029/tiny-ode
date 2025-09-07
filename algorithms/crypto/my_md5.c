@@ -1,19 +1,12 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
+#include "my_md5.h"
 
 typedef unsigned int UINT4;
 void md5_encode(unsigned char *output, const uint32_t *input, size_t len);
 void md5_decode(uint32_t *output, const unsigned char *input, size_t len);
 
-#define MD5_BLOCK_SIZE 64
-#define MD5_DIGEST_SIZE 16
-
-typedef struct {
-    uint32_t state[4];
-    uint32_t count[2];
-    unsigned char buffer[MD5_BLOCK_SIZE];
-} MD5_CTX;
 
 static unsigned char padding[64] = {
     0x80, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -247,27 +240,4 @@ void md5_decode(uint32_t *output, const unsigned char *input, size_t len) {
                     (input[j + 2] << 16) |
                     (input[j + 3] << 24);
     }
-}
-
-
-
-int main() {
-    MD5_CTX ctx;
-    unsigned char digest[MD5_DIGEST_SIZE];
-    char message[256];
-    printf("Plain Text: ");
-    scanf("%s", message);
-
-    md5_init(&ctx);
-    md5_update(&ctx, (unsigned char *)message, strlen(message));
-    md5_final(&ctx, digest);
-
-    printf("\n");
-    printf("MD5 Digest: ");
-    for (int i = 0; i < MD5_DIGEST_SIZE; i++) {
-        printf("%02x", digest[i]);
-    }
-    printf("\n");
-
-    return 0;
 }
